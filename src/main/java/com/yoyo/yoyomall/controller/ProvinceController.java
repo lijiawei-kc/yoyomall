@@ -53,5 +53,10 @@ public class ProvinceController {
     @GetMapping("/update")
     public  R update(String id,String name){ return provinceService.update(id,name);}
 
+    @GetMapping("/delete")
+    public R delete(String id){
+        return provinceService.delete(id);
+    }
+
 }
 

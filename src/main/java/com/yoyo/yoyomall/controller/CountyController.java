@@ -66,6 +66,11 @@ public class CountyController {
         return countyService.update(name, cid, id);
     }
 
+    @GetMapping("/delete")
+    public R delete(String id){
+        return countyService.delete(id);
+    }
+
 
 
 

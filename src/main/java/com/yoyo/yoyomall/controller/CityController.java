@@ -55,5 +55,10 @@ public class CityController {
         return cityService.update(name,pid,id);
 
     }
+
+    @GetMapping("/delete")
+    public R delete(String id){
+        return cityService.delete(id);
+    }
 }
 

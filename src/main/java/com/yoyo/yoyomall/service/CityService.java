@@ -25,5 +25,7 @@ public interface CityService extends IService<City> {
 
      R update(String name,String pid,String id);
 
+     R delete(String id);
+
 
 }

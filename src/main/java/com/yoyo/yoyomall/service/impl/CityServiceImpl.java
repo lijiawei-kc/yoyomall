@@ -114,4 +114,17 @@ public class CityServiceImpl extends ServiceImpl<CityMapper, City> implements Ci
         }
         return i==1?R.ok().msg("修改成功"):R.error().msg("修改失败");
     }
+
+    @Override
+    public R delete(String id) {
+        int i;
+        try {
+            i=cityMapper.deleteById(id);
+        }catch (Exception e){
+            return R.error().msg("删除错误");
+        }
+        return i==1?R.ok().msg("删除成功"):R.error().msg("删除失败");
+    }
+
+
 }

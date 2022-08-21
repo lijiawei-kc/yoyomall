@@ -20,4 +20,6 @@ public interface ProvinceService extends IService<Province> {
 
       R update(String id,String name);
 
+      R delete(String id);
+
 }
