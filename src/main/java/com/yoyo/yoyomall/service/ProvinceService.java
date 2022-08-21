@@ -2,6 +2,7 @@ package com.yoyo.yoyomall.service;
 
 import com.yoyo.yoyomall.entity.Province;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yoyo.yoyomall.utils.R;
 
 /**
  * <p>
@@ -12,5 +13,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-08-21
  */
 public interface ProvinceService extends IService<Province> {
+     R getAllProvince();
+
+     R get8Id(Integer id);
 
 }

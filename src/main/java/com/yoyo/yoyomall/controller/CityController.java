@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yoyo.yoyomall.entity.City;
 import com.yoyo.yoyomall.entity.County;
 import com.yoyo.yoyomall.mapper.CityMapper;
+import com.yoyo.yoyomall.service.CityService;
 import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,28 +26,23 @@ import java.util.List;
 @RestController
 @RequestMapping("/yoyomall/city")
 public class CityController {
-
     @Autowired
-    CityMapper cityMapper;
+    CityService cityService;
+
 //全查
     @GetMapping("/selectcity")
     public R getAllProvince(){
-        List<City> list=cityMapper.selectList(null);
-        return R.ok().data("cityList",list);
+        return  cityService.getAllProvince();
     }
 //根据id查
     @GetMapping("/select")
     public R get8Id(Integer id){
-        City city=cityMapper.selectById(id);
-        return R.ok().data("city",city);
+       return cityService.get8Id(id);
     }
     //根据pid查
     @GetMapping("/selectByPid")
     public R get8Pid(Integer id){
-        QueryWrapper<City> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("p_id",id);
-        List<City> list=cityMapper.selectList(queryWrapper);
-        return R.ok().data("countryList",list);
+       return cityService.get8Pid(id);
     }
 
 }

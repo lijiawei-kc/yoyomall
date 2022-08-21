@@ -27,18 +27,16 @@ import java.util.List;
 public class ProvinceController {
 
     @Autowired
-    ProvinceMapper provinceMapper;
+   ProvinceService provinceService;
     //全查
     @GetMapping("/selectprovince")
     public R getAllProvince(){
-        List<Province> list=provinceMapper.selectList(null);
-        return R.ok().data("provinceList",list);
+        return  provinceService.getAllProvince();
     }
     //根据id查
     @GetMapping("/select")
     public R get8Id(Integer id){
-        Province province= provinceMapper.selectById(id);
-        return R.ok().data("province",province);
+       return provinceService.get8Id(id);
     }
 }
 

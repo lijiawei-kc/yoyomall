@@ -2,9 +2,13 @@ package com.yoyo.yoyomall.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yoyo.yoyomall.entity.City;
 import com.yoyo.yoyomall.entity.County;
 import com.yoyo.yoyomall.entity.Province;
+import com.yoyo.yoyomall.mapper.CityMapper;
 import com.yoyo.yoyomall.mapper.CountyMapper;
+import com.yoyo.yoyomall.mapper.ProvinceMapper;
+import com.yoyo.yoyomall.service.CountyService;
 import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,26 +33,27 @@ import java.util.Map;
 public class CountyController {
 
     @Autowired
-    CountyMapper countyMapper;
+    CountyService countyService;
+
     //全查
     @GetMapping("/selectcounty")
     public R getAllProvince(){
-        List<County> list=countyMapper.selectList(null);
-        return R.ok().data("countyList",list);
+       return countyService.getAllProvince();
     }
     //根据id查
     @GetMapping("/select")
     public R get8Id(Integer id){
-        County county= countyMapper.selectById(id);
-        return R.ok().data("county",county);
+        return countyService.get8Id(id);
     }
     //根据cid查
     @GetMapping("/selectByCid")
     public R get8Cid(Integer id){
-        QueryWrapper<County> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("c_id",id);
-        List<County> list=countyMapper.selectList(queryWrapper);
-        return R.ok().data("countryList",list);
+       return  countyService.get8Cid(id);
+    }
+    //根据县id获取完整地址
+    @GetMapping("/selectAdr")
+    public  R getAdr8Id(Integer id){
+        return countyService.getAdr8Id(id);
     }
 
 
