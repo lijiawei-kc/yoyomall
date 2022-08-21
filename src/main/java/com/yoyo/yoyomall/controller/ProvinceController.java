@@ -27,10 +27,18 @@ public class ProvinceController {
 
     @Autowired
     ProvinceMapper provinceMapper;
-    @GetMapping("/all")
+    //全查
+    @GetMapping("/selectprovnice")
     public List<Province> getAllProvince(){
         return provinceMapper.selectList(null);
     }
+    //根据id查
+    @GetMapping("/select")
+    public Province get8Id(Integer id){
+        return provinceMapper.selectById(id);
+    }
+
+
 
 
 }
