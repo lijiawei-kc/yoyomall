@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/yoyomall/goodstag")
 public class GoodstagController {
+//测试idea    git
+
 
 }
 
