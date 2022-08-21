@@ -23,5 +23,7 @@ public interface CityService extends IService<City> {
 
      R save(String name,String pid);
 
+     R update(String name,String pid,String id);
+
 
 }

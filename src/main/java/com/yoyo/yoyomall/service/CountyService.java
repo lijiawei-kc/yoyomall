@@ -26,5 +26,6 @@ public interface CountyService extends IService<County> {
      R getAdr8Id(Integer id);
 
      R save(String name,String cid);
+      R update(String name,String cid,String id);
 
 }

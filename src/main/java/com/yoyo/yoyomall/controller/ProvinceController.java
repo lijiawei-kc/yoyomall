@@ -48,5 +48,10 @@ public class ProvinceController {
      return provinceService.save(name);
     }
 
+    //修改
+
+    @GetMapping("/update")
+    public  R update(String id,String name){ return provinceService.update(id,name);}
+
 }
 

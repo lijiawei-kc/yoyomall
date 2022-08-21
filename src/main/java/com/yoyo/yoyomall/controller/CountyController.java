@@ -60,6 +60,11 @@ public class CountyController {
     public  R save(String name,String cid){
         return countyService.save(name,cid);
     }
+    //修改县
+    @GetMapping("/update")
+    public R update(String name,String cid,String id){
+        return countyService.update(name, cid, id);
+    }
 
 
 

@@ -1,6 +1,7 @@
 package com.yoyo.yoyomall.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yoyo.yoyomall.entity.City;
 import com.yoyo.yoyomall.entity.County;
 import com.yoyo.yoyomall.entity.Province;
 import com.yoyo.yoyomall.mapper.ProvinceMapper;
@@ -61,6 +62,25 @@ public class ProvinceServiceImpl extends ServiceImpl<ProvinceMapper, Province> i
         province.setName(name);
         int i=provinceMapper.insert(province);
         return i==1?R.ok().msg("插入成功"):R.error().msg("插入失败");
+    }
+
+    @Override
+    public R update(String id, String name) {
+        Province province=provinceMapper.selectById(id);
+        if(province==null) return R.error().msg("该省id不存在");
+
+        Province newProvince=new Province();
+        newProvince.setId(id);
+        newProvince.setName(name);
+
+        int i;
+        try{
+            i=provinceMapper.updateById(newProvince);
+        }catch (Exception e){
+            e.printStackTrace();
+            return R.error().msg("修改错误");
+        }
+        return i==1?R.ok().msg("修改成功"):R.error().msg("修改失败");
     }
 
 

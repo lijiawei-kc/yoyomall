@@ -49,5 +49,11 @@ public class CityController {
     public R save(String name,String pid){
         return cityService.save(name,pid);
     }
+
+    @GetMapping("/update")
+    public R update(String name,String pid,String id){
+        return cityService.update(name,pid,id);
+
+    }
 }
 

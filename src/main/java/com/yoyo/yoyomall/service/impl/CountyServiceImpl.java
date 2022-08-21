@@ -105,5 +105,29 @@ public class CountyServiceImpl extends ServiceImpl<CountyMapper, County> impleme
         return i==1?R.ok().msg("插入成功"):R.error().msg("插入失败");
     }
 
+    @Override
+    public R update(String name, String cid, String id) {
+        County county=countyMapper.selectById(id);
+        if(county==null) return R.error().msg("该县id不存在");
+
+        City city=cityMapper.selectById(cid);
+        if(city==null) return R.error().msg("添加所属市不存在");
+
+
+        County newCounty=new County();
+        newCounty.setId(id);
+        newCounty.setCId(cid);
+        newCounty.setName(name);
+
+        int i;
+        try{
+            i=countyMapper.updateById(newCounty);
+        }catch (Exception e){
+            e.printStackTrace();
+            return R.error().msg("修改错误");
+        }
+        return i==1?R.ok().msg("修改成功"):R.error().msg("修改失败");
+    }
+
 
 }

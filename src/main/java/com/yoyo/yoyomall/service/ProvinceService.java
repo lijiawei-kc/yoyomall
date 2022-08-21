@@ -18,4 +18,6 @@ public interface ProvinceService extends IService<Province> {
      R get8Id(String id);
       R save(String name);
 
+      R update(String id,String name);
+
 }
