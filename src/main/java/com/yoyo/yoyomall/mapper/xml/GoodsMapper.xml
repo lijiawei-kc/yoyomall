@@ -2,4 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoyo.yoyomall.mapper.GoodsMapper">
 
+
+    <select id="selectAll" resultType="com.yoyo.yoyomall.entity.Goods">
+      select g.*
+        from
+        goods g,
+        goods_goodstag gg
+where gg.tid = ${tid} and g.id =gg.tid
+<if test="vo.title!=null||vo.title!=''">
+    and g.title like ${vo.title}
+</if>
+<if test="vo.pricelow!=null||vo.pricelow!=''">
+    and g.current_price &gt;= ${vo.pricelow}
+</if>
+        <if test="vo.pricehigh!=null||vo.pricehigh!=''">
+            and g.current_price  &lt;= ${vo.pricehigh}
+        </if>
+        <if test="vo.status!=null||vo.status!=''">
+            and g.status = ${vo.status}
+        </if>
+        <if test="vo.startTime!=null||vo.startTime!=''">
+            and g.gmt_create &gt;= ${vo.startTime}
+        </if>
+        <if test="vo.endTime!=null||vo.endTime!=''">
+            and g.gmt_create &lt;= ${vo.endTime}
+        </if>
+        <if test="vo.num!=null||vo.num!=''">
+            and g.stock &gt;= ${num}
+        </if>
+
+        <if test="vo.ispricedesc!=null||vo.ispricedesc!=''">
+            <if test="vo.ispricedesc == 'true'">
+                order by price desc
+            </if>
+            <if test="vo.ispricedesc == 'false'">
+                order by price 
+            </if>
+        </if>
+        <if test="vo.ispricedesc==null||vo.ispricedesc==''">
+            order by buy_num desc
+        </if>
+
+
+
+
+
+
+    </select>
+    <select id="selectLastInsertId" resultType="java.lang.String">
+        SELECT LAST_INSERT_ID()
+    </select>
 </mapper>
