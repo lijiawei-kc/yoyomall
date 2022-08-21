@@ -1,7 +1,12 @@
 package com.yoyo.yoyomall.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yoyo.yoyomall.entity.Goods;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yoyo.yoyomall.entity.vo.GoodsQueryVo;
+import com.yoyo.yoyomall.entity.vo.GoodsVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +18,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface GoodsService extends IService<Goods> {
 
+    Goods selectById(Integer id);
+
+
+
+    List<Goods> selectAll(String page, String limit, GoodsQueryVo goodsQueryVo);
+
+    void save(GoodsVo goods);
+
+    void updateById(GoodsVo goods);
 }

@@ -2,6 +2,9 @@ package com.yoyo.yoyomall.mapper;
 
 import com.yoyo.yoyomall.entity.Goods;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yoyo.yoyomall.entity.vo.GoodsQueryVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface GoodsMapper extends BaseMapper<Goods> {
 
+    public List<Goods> selectAll(String page, String limit, GoodsQueryVo vo);
+
+    String selectLastInsertId();
 }
