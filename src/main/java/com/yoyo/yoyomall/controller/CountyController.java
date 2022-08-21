@@ -55,6 +55,13 @@ public class CountyController {
     public  R getAdr8Id(Integer id){
         return countyService.getAdr8Id(id);
     }
+    //增加县
+    @GetMapping("/save")
+    public  R save(String name,String cid){
+        return countyService.save(name,cid);
+    }
+
+
 
 
 

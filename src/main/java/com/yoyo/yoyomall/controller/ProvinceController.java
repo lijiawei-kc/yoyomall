@@ -3,6 +3,7 @@ package com.yoyo.yoyomall.controller;
 
 import com.yoyo.yoyomall.mapper.ProvinceMapper;
 import com.yoyo.yoyomall.service.ProvinceService;
+import com.yoyo.yoyomall.utils.MathUtil;
 import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yoyo.yoyomall.entity.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,8 +37,16 @@ public class ProvinceController {
     }
     //根据id查
     @GetMapping("/select")
-    public R get8Id(Integer id){
+    public R get8Id(String id){
        return provinceService.get8Id(id);
     }
+
+    //新增
+
+    @GetMapping("/save")
+    public R save(String name){
+     return provinceService.save(name);
+    }
+
 }
 
