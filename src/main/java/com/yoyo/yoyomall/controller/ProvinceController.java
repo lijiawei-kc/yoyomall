@@ -3,6 +3,7 @@ package com.yoyo.yoyomall.controller;
 
 import com.yoyo.yoyomall.mapper.ProvinceMapper;
 import com.yoyo.yoyomall.service.ProvinceService;
+import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,18 +29,16 @@ public class ProvinceController {
     @Autowired
     ProvinceMapper provinceMapper;
     //全查
-    @GetMapping("/selectprovnice")
-    public List<Province> getAllProvince(){
-        return provinceMapper.selectList(null);
+    @GetMapping("/selectprovince")
+    public R getAllProvince(){
+        List<Province> list=provinceMapper.selectList(null);
+        return R.ok().data("provinceList",list);
     }
     //根据id查
     @GetMapping("/select")
-    public Province get8Id(Integer id){
-        return provinceMapper.selectById(id);
+    public R get8Id(Integer id){
+        Province province= provinceMapper.selectById(id);
+        return R.ok().data("province",province);
     }
-
-
-
-
 }
 
