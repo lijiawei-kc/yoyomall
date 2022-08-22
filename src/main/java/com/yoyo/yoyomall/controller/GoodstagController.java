@@ -16,6 +16,11 @@ public class GoodstagController {
 
     @Autowired
     private GoodstagService goodstagService;
+
+    /**
+     * @param id 通过id查询商品标签
+     * @return
+     */
     @GetMapping("/findById")
     public R findById(String id){
         Goodstag goodstag = goodstagService.findById(id);
@@ -24,6 +29,11 @@ public class GoodstagController {
         }
         return R.error();
     }
+
+    /**
+     * @param name 添加商品标签
+     * @return
+     */
     @RequestMapping("/add")
     public  R addGooodsTag(String name){
         try {
@@ -35,6 +45,11 @@ public class GoodstagController {
             return  R.error().msg("插入商品标签失败");
         }
     }
+
+    /**通过id删除
+     * @param id
+     * @return
+     */
    @RequestMapping("/delete")
     public  R deleteById(String id){
        try {
@@ -44,6 +59,11 @@ public class GoodstagController {
            return  R.error().msg("删除商品标签出错");
        }
    }
+
+    /**通过名称查询
+     * @param name
+     * @return
+     */
     @RequestMapping("/findByName")
     public  R findByName(String name){
         try {

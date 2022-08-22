@@ -60,7 +60,7 @@ public class GoodstagServiceImpl extends ServiceImpl<GoodstagMapper, Goodstag> i
     @Override
     public Goodstag findByName(String name) {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("name",name);
+        queryWrapper.like("name",name);
         Goodstag goodstag = baseMapper.selectOne(queryWrapper);
         return  goodstag;
     }

@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 2022-08-20 18:50:05.413 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [D:\JAVA\UUmall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [E:\Project\java\yoyomall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:397)
@@ -20,7 +19,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
 	at com.yoyo.yoyomall.YoyomallApplication.main(YoyomallApplication.java:13)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [D:\JAVA\UUmall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [E:\Project\java\yoyomall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:397)
@@ -36,7 +35,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:636)
 	... 18 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [D:\JAVA\UUmall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [E:\Project\java\yoyomall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1803)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
@@ -58,7 +57,7 @@ Caused by: java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or '
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1799)
 	... 41 common frames omitted
 2022-08-20 18:51:07.863 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [D:\JAVA\UUmall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [E:\Project\java\yoyomall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:397)
@@ -78,7 +77,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
 	at com.yoyo.yoyomall.YoyomallApplication.main(YoyomallApplication.java:13)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [D:\JAVA\UUmall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [E:\Project\java\yoyomall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:116)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:397)
@@ -94,7 +93,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:636)
 	... 18 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [D:\JAVA\UUmall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminMapper' defined in file [E:\Project\java\yoyomall\target\classes\com\yoyo\yoyomall\mapper\AdminMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1803)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
@@ -115,35 +114,3 @@ Caused by: java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or '
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1799)
 	... 41 common frames omitted
-=======
-2022-08-21 16:52:00.678 [http-nio-8080-exec-8] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 16:53:02.109 [http-nio-8080-exec-2] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 16:54:50.416 [http-nio-8080-exec-4] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 16:55:47.734 [http-nio-8080-exec-3] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 16:58:23.187 [http-nio-8080-exec-4] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 16:58:28.006 [http-nio-8080-exec-6] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:00:02.963 [http-nio-8080-exec-9] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:00:09.860 [http-nio-8080-exec-10] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:01:17.600 [http-nio-8080-exec-2] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:01:23.307 [http-nio-8080-exec-5] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:02:53.175 [http-nio-8080-exec-7] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:02:57.977 [http-nio-8080-exec-8] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:05:03.394 [http-nio-8080-exec-1] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:05:08.181 [http-nio-8080-exec-3] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:09:40.387 [http-nio-8080-exec-8] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:11:37.717 [http-nio-8080-exec-1] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:12:13.166 [http-nio-8080-exec-2] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:17:26.361 [http-nio-8080-exec-7] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:17:32.062 [http-nio-8080-exec-8] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:20:18.015 [http-nio-8080-exec-1] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:22:12.583 [http-nio-8080-exec-2] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:25:30.079 [http-nio-8080-exec-2] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:37:25.069 [http-nio-8080-exec-2] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:43:13.483 [http-nio-8080-exec-1] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:45:56.988 [http-nio-8080-exec-5] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:46:03.363 [http-nio-8080-exec-7] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:46:14.957 [http-nio-8080-exec-6] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:46:42.387 [http-nio-8080-exec-8] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:51:38.083 [http-nio-8080-exec-4] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
-2022-08-21 17:54:26.325 [http-nio-8080-exec-2] ERROR com.yoyo.yoyomall.utils.GlobalExceptionHandler - null
->>>>>>> 7aa90170d9b314407946c8c08cbadfc150554caf

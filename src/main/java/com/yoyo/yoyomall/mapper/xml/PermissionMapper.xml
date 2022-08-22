@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoyo.yoyomall.mapper.PermissionMapper">
 
+    <select id="permmissionTree" resultType="com.yoyo.yoyomall.entity.Permission">
+        SELECT * FROM permission where parent_id = #{parentId}
+    </select>
 </mapper>
