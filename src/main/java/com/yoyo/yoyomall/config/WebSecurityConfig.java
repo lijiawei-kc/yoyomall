@@ -3,6 +3,7 @@ package com.yoyo.yoyomall.config;
 import com.yoyo.yoyomall.filter.JWTFilter;
 import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +13,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+
+import java.util.logging.LogRecord;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -36,9 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/manager/admin/login").anonymous()
                 .anyRequest().authenticated()
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .addFilter(jwtFilter);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.addFilter(jwtFilter);
     }
     /**
      * 高版本的SpringSecurity必须配置一个 "密码编码器"提供给SpringBoot使用
@@ -49,4 +53,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    public class Myfilter extends SecurityProperties.Filter {
+
+
+    }
+
 }
