@@ -9,11 +9,13 @@ import com.yoyo.yoyomall.mapper.CountyMapper;
 import com.yoyo.yoyomall.mapper.ProvinceMapper;
 import com.yoyo.yoyomall.service.CountyService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yoyo.yoyomall.utils.MathUtil;
 import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +67,77 @@ public class CountyServiceImpl extends ServiceImpl<CountyMapper, County> impleme
         map.put("city",city.getName());
         map.put("county",county.getName());
         return R.ok().data(map);
+    }
+
+    @Override
+    public R save(String name, String cid) {
+
+        QueryWrapper<County> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name",name);
+        County county=countyMapper.selectOne(queryWrapper);
+        if(county!=null){
+            return R.error().msg("县(区)已存在");
+        }
+
+        City city=cityMapper.selectById(cid);
+        if(city==null){
+            return R.error().msg("市不存在");
+        }
+
+
+
+
+
+        List<County> list= countyMapper.selectList(null);
+        List<String> stringList=new ArrayList<>();
+        for (County county1:list) {
+            stringList.add(county1.getId());
+        }
+        System.out.println("xx");
+        MathUtil mathUtil=new MathUtil();
+
+        Integer id=mathUtil.findMaxId(stringList)+1;
+       County newCounty=new County();
+       newCounty.setId(String.valueOf(id));
+       newCounty.setName(name);
+       newCounty.setCId(cid);
+        int i=countyMapper.insert(newCounty);
+        return i==1?R.ok().msg("插入成功"):R.error().msg("插入失败");
+    }
+
+    @Override
+    public R update(String name, String cid, String id) {
+        County county=countyMapper.selectById(id);
+        if(county==null) return R.error().msg("该县id不存在");
+
+        City city=cityMapper.selectById(cid);
+        if(city==null) return R.error().msg("添加所属市不存在");
+
+
+        County newCounty=new County();
+        newCounty.setId(id);
+        newCounty.setCId(cid);
+        newCounty.setName(name);
+
+        int i;
+        try{
+            i=countyMapper.updateById(newCounty);
+        }catch (Exception e){
+            e.printStackTrace();
+            return R.error().msg("修改错误");
+        }
+        return i==1?R.ok().msg("修改成功"):R.error().msg("修改失败");
+    }
+
+    @Override
+    public R delete(String id) {
+        int i;
+        try {
+             i=countyMapper.deleteById(id);
+        }catch (Exception e){
+            return R.error().msg("删除错误");
+        }
+        return i==1?R.ok().msg("删除成功"):R.error().msg("删除失败");
     }
 
 

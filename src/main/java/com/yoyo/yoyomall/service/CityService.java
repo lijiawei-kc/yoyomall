@@ -18,6 +18,14 @@ import java.util.List;
  */
 public interface CityService extends IService<City> {
      R getAllProvince();
-     R get8Id(Integer id);
-     R get8Pid(Integer id);
+     R get8Id(String id);
+     R get8Pid(String id);
+
+     R save(String name,String pid);
+
+     R update(String name,String pid,String id);
+
+     R delete(String id);
+
+
 }

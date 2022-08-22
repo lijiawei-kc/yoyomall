@@ -15,6 +15,11 @@ import com.yoyo.yoyomall.utils.R;
 public interface ProvinceService extends IService<Province> {
      R getAllProvince();
 
-     R get8Id(Integer id);
+     R get8Id(String id);
+      R save(String name);
+
+      R update(String id,String name);
+
+      R delete(String id);
 
 }

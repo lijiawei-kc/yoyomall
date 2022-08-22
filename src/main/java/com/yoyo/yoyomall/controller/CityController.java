@@ -36,14 +36,29 @@ public class CityController {
     }
 //根据id查
     @GetMapping("/select")
-    public R get8Id(Integer id){
+    public R get8Id(String id){
        return cityService.get8Id(id);
     }
     //根据pid查
     @GetMapping("/selectByPid")
-    public R get8Pid(Integer id){
+    public R get8Pid(String id){
        return cityService.get8Pid(id);
     }
 
+    @GetMapping("/save")
+    public R save(String name,String pid){
+        return cityService.save(name,pid);
+    }
+
+    @GetMapping("/update")
+    public R update(String name,String pid,String id){
+        return cityService.update(name,pid,id);
+
+    }
+
+    @GetMapping("/delete")
+    public R delete(String id){
+        return cityService.delete(id);
+    }
 }
 
