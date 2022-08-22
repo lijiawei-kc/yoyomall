@@ -14,5 +14,16 @@ import java.util.List;
  * @since 2022-08-21
  */
 public interface OrdersService extends IService<Orders> {
+    public Integer insert(Orders orders);
+    public Integer update( Orders orders);
+    public Integer delete(String id);
 
+    public Orders selectById(String id);
+    public List<Orders> selectAll(String uName,String gName,Integer currentPage, Integer pageSize);
+
+    public Integer count(String uName,String gName);
+
+    List<Orders> selectAllList(String uId, String gName, Integer currentPage, Integer pageSize);
+
+    Integer countByUid(String uId, String gName);
 }

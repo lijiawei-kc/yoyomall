@@ -73,4 +73,7 @@ public class Orders implements Serializable {
     private Date gmtModify;
 
 
+    @ApiModelProperty(value = "收货地址")
+    @TableField(exist = false)
+    private String receivingAddress;
 }

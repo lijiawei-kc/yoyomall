@@ -18,40 +18,28 @@ import java.util.List;
  * @since 2022-08-21
  */
 @RestController
-@RequestMapping("/manager/orders")
+@RequestMapping("/web/orders")
 @CrossOrigin  //跨域
-public class OrdersController {
+public class WebOrdersController {
 
     @Autowired
     private OrdersService orderService;
 
-    @PostMapping("/save")
-    //添加订单
+    @PostMapping("/createOrder")
+    //生成订单
     public R insert(Orders orders){
         R response;
         try {
             orderService.insert(orders);
             response=R.ok();
         }catch (Exception e){
-            response=R.error().msg("添加订单失败");
+            response=R.error().msg("生成订单失败");
         }
         return response;
     }
 
-    //删除订单
-    @PostMapping("/delete")
-    public R delete(String id){
-        R response;
-        try {
-            orderService.delete(id);
-            response=R.ok();
-        }catch (Exception e){
-            response=R.error().msg("删除订单失败");
-        }
-        return response;
-    }
-    //修改订单
-    @PostMapping("/update")
+    //订单信息完成
+    @PostMapping("/save")
     public R update(Orders orders){
         R response;
         try {
@@ -64,7 +52,7 @@ public class OrdersController {
     }
 
     //根据id查询订单信息
-    @GetMapping("/select")
+    @GetMapping("/info")
     public R selectById(String id){
         R response;
         try {
@@ -76,13 +64,13 @@ public class OrdersController {
         return response;
     }
 
-    //分页查询订单列表
+    //查看用户所有订单列表
     @GetMapping("/selectAll")
-    public R selectAll(String uName,String gName,Integer currentPage,Integer pageSize){
+    public R selectAllList(String uId,String gName,Integer currentPage,Integer pageSize){
         R response;
         try {
-            List<Orders> ordersList = orderService.selectAll(uName,gName,currentPage, pageSize);
-            Integer total = orderService.count(uName, gName);
+            List<Orders> ordersList = orderService.selectAllList(uId,gName,currentPage, pageSize);
+            Integer total = orderService.countByUid(uId,gName);
             response=R.ok().data("ordersList",ordersList).data("total",total);
         }catch (Exception e){
             response=R.error().msg("查询订单列表失败");
@@ -90,5 +78,12 @@ public class OrdersController {
         return response;
     }
 
+    //生成支付页面
+    @GetMapping("/createPay")
+    public R createPay(String id){
+        R response = null;
+
+        return response;
+    }
 }
 
