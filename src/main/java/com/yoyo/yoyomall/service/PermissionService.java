@@ -17,5 +17,8 @@ import java.util.List;
 public interface PermissionService extends IService<Permission> {
     Integer insert(Permission permission);
     List<Permission> permissionTree(String parentId);
+    Integer deleteById(String parentId);
+    List<String> selectPermissionByRole(String id);
+    Integer upadatePermission(Permission permission);
 
 }

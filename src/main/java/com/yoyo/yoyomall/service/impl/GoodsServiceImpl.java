@@ -58,8 +58,6 @@ private GoodsGoodstagService goodstagService;
             List<Goods> list = baseMapper.selectAll(page, limit, goodsQueryVo);
             return list;
         }
-
-
         //TODO
         String title = goodsQueryVo.getTitle();
         if (!StringUtils.isNullOrEmpty(title))
