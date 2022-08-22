@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
  *  前端控制器
  * </p>
  *
- * @author atguigu
- * @since 2022-08-21
+ * @author serol
+ * @since 2022-08-22
  */
 @RestController
-@RequestMapping("/manager/goodsGoodstag")
-public class GoodsGoodstagController {
+@RequestMapping("/manager/adminRole")
+public class AdminRoleController {
 
 }
 

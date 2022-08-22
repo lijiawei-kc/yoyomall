@@ -123,11 +123,12 @@ private GoodsGoodstagService goodstagService;
         Goods goods1 = new Goods();
         BeanUtils.copyProperties(goods,goods1);
 
-        System.out.println(goods1);
+
         baseMapper.updateById(goods1);
         goodstagService.deleteList(goods.getId());
         if (!StringUtils.isNullOrEmpty(goods.getTid().toString()))
         goodstagService.saveList(goods.getTid(),goods.getId());
+        goodstagService.deleteList(goods.getId());
 
     }
 }

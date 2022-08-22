@@ -9,3 +9,7 @@
 2022-08-20 18:54:35.542 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'adminMapper' and 'com.yoyo.yoyomall.mapper.AdminMapper' mapperInterface. Bean already defined with the same name!
 2022-08-20 18:54:35.545 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.yoyo.yoyomall.mapper]' package. Please check your configuration.
 
+2022-08-22 16:18:40.271 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminController' method 
+com.yoyo.yoyomall.controller.AdminController#login(AdminVo)
+to {POST /manager/admin/save}: There is already 'adminController' bean method
+com.yoyo.yoyomall.controller.AdminController#save(AdminVo) mapped.

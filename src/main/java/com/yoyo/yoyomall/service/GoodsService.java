@@ -5,6 +5,7 @@ import com.yoyo.yoyomall.entity.Goods;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yoyo.yoyomall.entity.vo.GoodsQueryVo;
 import com.yoyo.yoyomall.entity.vo.GoodsVo;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * @author atguigu
  * @since 2022-08-21
  */
+@Transactional //开启事务
 public interface GoodsService extends IService<Goods> {
 
     Goods selectById(Integer id);
