@@ -53,7 +53,7 @@ public class GoodsController {
     @PostMapping("/delete")
     public R deleteById(String id){
         try {
-            goodsService.removeById(id);
+            goodsService.deleteById(id);
 
         }catch (Exception e){
             e.printStackTrace();

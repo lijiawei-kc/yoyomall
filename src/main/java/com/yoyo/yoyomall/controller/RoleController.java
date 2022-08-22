@@ -33,6 +33,7 @@ public class RoleController {
         R response;
         try {
             roleService.insert(role,permissionIdList);
+
             response=R.ok();
         }catch (Exception e){
             response=R.error().msg("添加职务失败");

@@ -13,6 +13,7 @@ import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -108,6 +109,7 @@ private GoodsGoodstagService goodstagService;
     }
 
     @Override
+    @Transactional //开启事务
     public void save(GoodsVo goods) {
         Goods goods1 = new Goods();
         BeanUtils.copyProperties(goods,goods1);
@@ -119,6 +121,7 @@ private GoodsGoodstagService goodstagService;
     }
 
     @Override
+    @Transactional
     public void updateById(GoodsVo goods) {
         Goods goods1 = new Goods();
         BeanUtils.copyProperties(goods,goods1);
@@ -129,6 +132,14 @@ private GoodsGoodstagService goodstagService;
         if (!StringUtils.isNullOrEmpty(goods.getTid().toString()))
         goodstagService.saveList(goods.getTid(),goods.getId());
         goodstagService.deleteList(goods.getId());
+
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(String id) {
+        baseMapper.deleteById(id);
+        goodstagService.deleteList(id);
 
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
  * @author atguigu
  * @since 2022-08-21
  */
-@Transactional //开启事务
+
 public interface GoodsService extends IService<Goods> {
 
     Goods selectById(Integer id);
@@ -29,4 +29,6 @@ public interface GoodsService extends IService<Goods> {
     void save(GoodsVo goods);
 
     void updateById(GoodsVo goods);
+
+    void deleteById(String id);
 }

@@ -11,6 +11,7 @@ import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
    }
 
     @Override
+    @Transactional
     public void deleteById(String id) {
        try {
            baseMapper.deleteById(id);
@@ -45,6 +47,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     }
 
     @Override
+    @Transactional
     public void insert(AdminVo admin) {
         try {
             Admin admin1 = new Admin();
@@ -59,6 +62,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     }
 
     @Override
+    @Transactional //开启事务
     public void updateByEntity(AdminVo admin) {
         Admin admin1 = new Admin();
         BeanUtils.copyProperties(admin,admin1);

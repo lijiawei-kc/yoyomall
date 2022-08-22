@@ -27,11 +27,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
        Admin admin =  adminService.selectByAccount(account);
         List<String> list = adminRoleService.selectList(admin.getId());
 
+        if(admin==null)
+            throw new UsernameNotFoundException("请检查你的账号!");
+
 
 
         //TODO
         User user = new User(admin.getAccount(),admin.getPassword(),null);
 
-        return null;
+        return user;
     }
 }
