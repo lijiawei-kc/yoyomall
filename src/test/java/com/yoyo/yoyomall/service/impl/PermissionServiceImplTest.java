@@ -1,5 +1,6 @@
 package com.yoyo.yoyomall.service.impl;
 
+import com.yoyo.yoyomall.entity.Permission;
 import com.yoyo.yoyomall.service.PermissionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +16,18 @@ public class PermissionServiceImplTest {
 private PermissionService permissionService;
     @Test
     public void permissionTree() {
-        System.out.println(permissionService.permissionTree("1561319626620485634"));
+        System.out.println(permissionService.permissionTree("1561528004475043842"));
+    }
+    @Test
+    public  void  delete(){
+        permissionService.deleteById("55");
+    }
+    @Test
+    public  void  upadteById(){
+        Permission permission = new Permission();
+        permission.setId("15616104056258");
+        permission.setName("最高权限1");
+
+        permissionService.upadatePermission(permission);
     }
 }

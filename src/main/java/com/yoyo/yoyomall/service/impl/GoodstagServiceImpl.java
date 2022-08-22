@@ -6,6 +6,7 @@ import com.yoyo.yoyomall.mapper.GoodstagMapper;
 import com.yoyo.yoyomall.service.GoodstagService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoyo.yoyomall.utils.R;
+import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

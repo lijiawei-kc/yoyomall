@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -18,5 +19,9 @@ import java.util.List;
 @Mapper
 public interface PermissionMapper extends BaseMapper<Permission> {
     List<Permission> permmissionTree(@Param("parentId") String parentId);
+    Integer deletePermission(@Param("id") String id);
+    Integer deleteRolePermission(@Param("id") String id);
+    List<String> selectPermissionByRole(@Param("id") String id);
+
 
 }

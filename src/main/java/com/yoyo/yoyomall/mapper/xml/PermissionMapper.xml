@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoyo.yoyomall.mapper.PermissionMapper">
-
+    <delete id="deletePermission">
+       DELETE from permission WHERE permission.id = #{id}
+    </delete>
+    <delete id="deleteRolePermission">
+        DELETE from
+            role_permission where  role_permission.pid=#{id}
+    </delete>
     <select id="permmissionTree" resultType="com.yoyo.yoyomall.entity.Permission">
         SELECT * FROM permission where parent_id = #{parentId}
     </select>
+    <select id="selectPermissionByRole" resultType="java.lang.String">
+        select p.id
+        from
+            role r inner join role_permission rp on r.id = rp.rid
+                   INNER JOIN permission p on p.id= rp.pid
+        where r.id=#{id}
+    </select>
+
+
 </mapper>

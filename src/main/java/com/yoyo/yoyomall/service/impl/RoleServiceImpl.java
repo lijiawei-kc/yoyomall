@@ -2,7 +2,6 @@ package com.yoyo.yoyomall.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mysql.cj.util.StringUtils;
@@ -95,7 +94,6 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
             List<String> permissionIdList = rolePermissionService.getPermissionIdList(role.getId());
             role.setPermissionIdList(permissionIdList);
         }
-
 
         return roleList;
     }

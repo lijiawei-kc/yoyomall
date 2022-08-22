@@ -4,13 +4,14 @@ package com.yoyo.yoyomall.controller;
 import com.yoyo.yoyomall.entity.Goodstag;
 import com.yoyo.yoyomall.service.GoodstagService;
 import com.yoyo.yoyomall.utils.R;
+import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/yoyomall/goodstag")
+@RequestMapping("/manager/goodstag")
 @CrossOrigin  //跨域
 public class GoodstagController {
 
@@ -68,6 +69,9 @@ public class GoodstagController {
     public  R findByName(String name){
         try {
             Goodstag goodstag = goodstagService.findByName(name);
+            if(goodstag==null){
+                return R.error().msg("商品标签不存在");
+            }
             return  R.ok().msg("查询商品标签成功").data("goodsTag",goodstag);
         }catch (Exception e){
              return  R.error().msg("查询商品标签出错");
