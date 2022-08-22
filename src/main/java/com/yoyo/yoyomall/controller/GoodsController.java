@@ -39,7 +39,7 @@ public class GoodsController {
     }
 
     @PostMapping("/save")
-    public R save(GoodsVo goods){
+    public R save(@RequestBody GoodsVo goods){
         System.out.println(goods);
         try {
             goodsService.save(goods);
@@ -63,7 +63,7 @@ public class GoodsController {
         return R.ok();
     }
     @PostMapping("/update")
-    public R update(GoodsVo goods){
+    public R update(@RequestBody GoodsVo goods){
         try {
             goodsService.updateById(goods);
         }catch (Exception e){
@@ -74,7 +74,7 @@ public class GoodsController {
         return R.ok();
     }
     @PostMapping("/selectall/{page}/{limit}")
-    public R selectall(GoodsQueryVo goodsQueryVo,@PathVariable String page,@PathVariable String limit){
+    public R selectall(@RequestBody GoodsQueryVo goodsQueryVo,@PathVariable String page,@PathVariable String limit){
         try {
 
       List<Goods> list =    goodsService.selectAll(page,limit,goodsQueryVo);

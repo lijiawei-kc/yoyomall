@@ -1,6 +1,7 @@
 package com.yoyo.yoyomall.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.util.List;
@@ -43,6 +44,7 @@ public class Permission implements Serializable {
     @ApiModelProperty(value = "父权限id")
     private String parentId;
 
+    @TableField(exist = false)
     private List<Permission> children;//所有子权限
 
 

@@ -2,6 +2,7 @@ package com.yoyo.yoyomall.service;
 
 import com.yoyo.yoyomall.entity.AdminRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yoyo.yoyomall.entity.Role;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface AdminRoleService extends IService<AdminRole> {
     void saveList(List<String> role, String id);
 
     List<String> selectList(String id);
-
+    List<Role> selectRoleList(String id);
     void deleteList(String id);
 
 }

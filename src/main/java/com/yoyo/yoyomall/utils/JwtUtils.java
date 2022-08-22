@@ -89,7 +89,7 @@ public class JwtUtils {
      * @param jwtToken
      * @return
      */
-    public static String getIdByJwtToken(String jwtToken) {
+    public static String getInfoByJwtToken(String jwtToken) {
         if (StringUtils.isEmpty(jwtToken)) return "";
         Jws<Claims> claimsJws = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
         Claims claims = claimsJws.getBody();

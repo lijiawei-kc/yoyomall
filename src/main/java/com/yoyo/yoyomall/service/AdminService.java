@@ -24,4 +24,6 @@ public interface AdminService extends IService<Admin> {
     void updateByEntity(AdminVo admin);
 
     Admin selectByAccount(String account);
+
+    AdminVo selectInfoByAccount(String account);
 }
