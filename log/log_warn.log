@@ -168,3 +168,54 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
+2022-08-23 12:40:38.265 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: The Filter class com.yoyo.yoyomall.filter.JWTFilter does not have a registered order and cannot be added without a specified order. Consider using addFilterBefore or addFilterAfter instead.
+2022-08-23 12:40:38.287 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-9] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:40:38.288 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:40:38.288 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-11] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:40:38.289 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-4] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:40:38.289 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-13] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:40:38.289 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-6] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:40:38.290 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-15] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:40:38.290 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-8] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:40:38.290 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:40:38.291 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [ForkJoinPool.commonPool-worker-10] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+ java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+ java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)

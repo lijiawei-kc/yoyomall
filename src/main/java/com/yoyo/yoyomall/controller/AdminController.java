@@ -49,7 +49,7 @@ private RedisTemplate redisTemplate;
     //TODO 把token放入redis中,定时保存
     @PostMapping("/login")
     public R login(@RequestBody AdminVo admin) {
-        System.out.println(admin);
+
         try {
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(admin.getAccount(), admin.getPassword());
@@ -97,7 +97,7 @@ redisTemplate.delete(admin.getAccount());
 
     @GetMapping("/test")
 //    @PreAuthorize("hasAnyAuthority('sys:test','sys:test:test')")
-//    @PreAuthorize("hasAnyRole('superadmin','bookmanager')")
+    @PreAuthorize("hasAnyRole('superadmin','test01')")
     public R test() {
         throw new YoyoException(20001, "////");
 //        return R.ok();

@@ -33,7 +33,7 @@ public class GoodsController {
     private GoodsGoodstagService goodstagService;
 
     @GetMapping("/select/{id}")
-    public R selectById(@PathVariable Integer id){
+    public R selectById(@PathVariable String id){
       Goods goods= goodsService.selectById(id);
         return R.ok().data("goods",goods);
     }

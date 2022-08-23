@@ -32,17 +32,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
-//        http.formLogin().disable();//暂停springsecurity起作用.
-        http.cors();
 
+
+//        http.formLogin().disable();//暂停springsecurity起作用.
+
+                http.csrf().disable();
+        http.cors();
+//        http.addFilter(jwtFilter);
         http
-                .csrf().disable()
+
                 .authorizeRequests().antMatchers("/manager/admin/login","/manager/admin/loginout").anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.addFilter(jwtFilter);
+
+//
     }
     /**
      * 高版本的SpringSecurity必须配置一个 "密码编码器"提供给SpringBoot使用

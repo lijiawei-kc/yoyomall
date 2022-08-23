@@ -35,6 +35,7 @@ public class JWTFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
         String token = httpServletRequest.getHeader("access_token");
+        System.out.println(token);
         if(!StringUtils.isNullOrEmpty(token)){
             String jwtToken = JwtUtils.getInfoByJwtToken(token);
             String s = jwtToken.substring(jwtToken.lastIndexOf("Username: "));

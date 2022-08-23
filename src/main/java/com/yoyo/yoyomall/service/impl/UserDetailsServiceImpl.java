@@ -39,6 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //                pidList.add(pid);
 //            }
 //        }
+
         AdminVo adminVo = adminService.selectInfoByAccount(account);
 
 //
@@ -51,7 +52,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //
         if(adminVo==null)
             throw new UsernameNotFoundException("请检查你的账号!");
-        //TODO
+
         User user = new User(adminVo.getAccount(),adminVo.getPassword(),authorities);
         return user;
     }

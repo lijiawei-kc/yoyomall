@@ -31,7 +31,7 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
 @Autowired
 private GoodsGoodstagService goodstagService;
     @Override
-    public Goods selectById(Integer id) {
+    public Goods selectById(String id) {
         try {
             Goods goods = baseMapper.selectById(id);
             return goods;

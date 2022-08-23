@@ -20,7 +20,7 @@ import java.util.List;
 
 public interface GoodsService extends IService<Goods> {
 
-    Goods selectById(Integer id);
+    Goods selectById(String id);
 
 
 
