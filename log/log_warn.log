@@ -141,3 +141,30 @@
  java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
  java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
  java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2022-08-23 12:16:11.368 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/D:/JavaWebStudy/apache-maven-3.5.2/repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class
+	jar:file:/D:/JavaWebStudy/apache-maven-3.5.2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2022-08-23 12:17:23.510 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/D:/JavaWebStudy/apache-maven-3.5.2/repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class
+	jar:file:/D:/JavaWebStudy/apache-maven-3.5.2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2022-08-23 12:18:20.683 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/D:/JavaWebStudy/apache-maven-3.5.2/repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class
+	jar:file:/D:/JavaWebStudy/apache-maven-3.5.2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+

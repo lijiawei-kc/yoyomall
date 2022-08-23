@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf().disable()
-                .authorizeRequests().antMatchers("/manager/admin/login").anonymous()
+                .authorizeRequests().antMatchers("/manager/admin/login","/manager/admin/loginout").anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

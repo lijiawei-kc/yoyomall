@@ -7,10 +7,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 @Data
-public class AdminVo {
+public class AdminVo implements Serializable {
     @ApiModelProperty(value = "管理员id,主键")
     private String id;
 

@@ -1,5 +1,6 @@
 package com.yoyo.yoyomall.filter;
 
+import com.mysql.cj.util.StringUtils;
 import com.yoyo.yoyomall.entity.Admin;
 import com.yoyo.yoyomall.entity.vo.AdminVo;
 import com.yoyo.yoyomall.service.AdminService;
@@ -34,7 +35,7 @@ public class JWTFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
         String token = httpServletRequest.getHeader("access_token");
-        if(token!=null){
+        if(!StringUtils.isNullOrEmpty(token)){
             String jwtToken = JwtUtils.getInfoByJwtToken(token);
             String s = jwtToken.substring(jwtToken.lastIndexOf("Username: "));
             String account=s.substring(10,s.indexOf(59));

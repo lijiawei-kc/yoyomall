@@ -20,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -48,6 +49,7 @@ private RedisTemplate redisTemplate;
     //TODO 把token放入redis中,定时保存
     @PostMapping("/login")
     public R login(@RequestBody AdminVo admin) {
+        System.out.println(admin);
         try {
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(admin.getAccount(), admin.getPassword());
@@ -59,13 +61,13 @@ private RedisTemplate redisTemplate;
 
                 String jwtToken = JwtUtils.getJwtToken(authenticate.getPrincipal().toString());
 
-                String s = jwtToken.substring(jwtToken.lastIndexOf("Username: "));
+                String s = authenticate.getPrincipal().toString().substring(authenticate.getPrincipal().toString().lastIndexOf("Username: "));
                 String account=s.substring(10,s.indexOf(59));
                 AdminVo adminVo = adminService.selectInfoByAccount(account);
                 ValueOperations<String, AdminVo> redis = redisTemplate.opsForValue();
 
-                redis.set(account,adminVo,60*60*24*7);
 
+                redis.set(account,adminVo, Duration.ofDays(7));
 
                 return R.ok().data("access_token",jwtToken);
             }
@@ -81,8 +83,8 @@ private RedisTemplate redisTemplate;
 //            Long userid = loginUser.getUser().getId();
 //            redisCache.deleteObject(userid);
 
-            ValueOperations<String, AdminVo> redis = redisTemplate.opsForValue();
-redis.decrement(admin.getAccount());
+
+redisTemplate.delete(admin.getAccount());
 
                 return R.ok();
 
