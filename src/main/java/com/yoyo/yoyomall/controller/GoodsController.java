@@ -33,13 +33,13 @@ public class GoodsController {
     private GoodsGoodstagService goodstagService;
 
     @GetMapping("/select/{id}")
-    public R selectById(@PathVariable Integer id){
+    public R selectById(@PathVariable String id){
       Goods goods= goodsService.selectById(id);
         return R.ok().data("goods",goods);
     }
 
     @PostMapping("/save")
-    public R save(GoodsVo goods){
+    public R save(@RequestBody GoodsVo goods){
         System.out.println(goods);
         try {
             goodsService.save(goods);
@@ -53,7 +53,7 @@ public class GoodsController {
     @PostMapping("/delete")
     public R deleteById(String id){
         try {
-            goodsService.removeById(id);
+            goodsService.deleteById(id);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -63,7 +63,7 @@ public class GoodsController {
         return R.ok();
     }
     @PostMapping("/update")
-    public R update(GoodsVo goods){
+    public R update(@RequestBody GoodsVo goods){
         try {
             goodsService.updateById(goods);
         }catch (Exception e){
@@ -74,7 +74,7 @@ public class GoodsController {
         return R.ok();
     }
     @PostMapping("/selectall/{page}/{limit}")
-    public R selectall(GoodsQueryVo goodsQueryVo,@PathVariable String page,@PathVariable String limit){
+    public R selectall(@RequestBody GoodsQueryVo goodsQueryVo,@PathVariable String page,@PathVariable String limit){
         try {
 
       List<Goods> list =    goodsService.selectAll(page,limit,goodsQueryVo);

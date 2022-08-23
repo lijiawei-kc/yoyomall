@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author atguigu
  * @since 2022-08-20
  */
-@Transactional //开启事务
+
 public interface AdminService extends IService<Admin> {
     public void test();
 
@@ -24,4 +24,6 @@ public interface AdminService extends IService<Admin> {
     void updateByEntity(AdminVo admin);
 
     Admin selectByAccount(String account);
+
+    AdminVo selectInfoByAccount(String account);
 }

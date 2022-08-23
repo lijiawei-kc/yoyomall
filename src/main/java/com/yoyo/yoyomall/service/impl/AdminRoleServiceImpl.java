@@ -2,10 +2,13 @@ package com.yoyo.yoyomall.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yoyo.yoyomall.entity.AdminRole;
+import com.yoyo.yoyomall.entity.Role;
 import com.yoyo.yoyomall.mapper.AdminRoleMapper;
 import com.yoyo.yoyomall.service.AdminRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yoyo.yoyomall.service.RoleService;
 import com.yoyo.yoyomall.utils.YoyoException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,7 +24,8 @@ import java.util.List;
  */
 @Service
 public class AdminRoleServiceImpl extends ServiceImpl<AdminRoleMapper, AdminRole> implements AdminRoleService {
-
+@Autowired
+private RoleService roleService;
     @Override
     public void saveList(List<String> role, String id) {
         try {
@@ -50,12 +54,35 @@ public class AdminRoleServiceImpl extends ServiceImpl<AdminRoleMapper, AdminRole
 
             for (int i = 0; i < adminRoles.size(); i++) {
                 AdminRole adminRole = adminRoles.get(i);
-                list.add(adminRole.getRid());
+                String rid = adminRole.getRid();
+
+
+                list.add(rid);
             }
         }catch (Exception e){
             e.printStackTrace();
             throw new YoyoException(20001,"查询失败");
 
+        }
+        return list;
+    }
+
+    @Override
+    public List<Role> selectRoleList(String id) {
+        List<Role> list = new ArrayList<>();
+        try {
+            QueryWrapper<AdminRole> adminRoleQueryWrapper = new QueryWrapper<>();
+            adminRoleQueryWrapper.eq("aid",id);
+            List<AdminRole> adminRoles = baseMapper.selectList(adminRoleQueryWrapper);
+            for (int i = 0; i < adminRoles.size(); i++) {
+                AdminRole adminRole = adminRoles.get(i);
+                String rid = adminRole.getRid();
+                Role role = roleService.selectById(rid);
+                list.add(role);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new YoyoException(20001,"查询失败");
         }
         return list;
     }
