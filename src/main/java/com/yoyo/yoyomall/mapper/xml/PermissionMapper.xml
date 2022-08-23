@@ -8,15 +8,16 @@
         DELETE from
             role_permission where  role_permission.pid=#{id}
     </delete>
-    <select id="permmissionTree" resultType="com.yoyo.yoyomall.entity.Permission">
-        SELECT * FROM permission where parent_id = #{parentId}
-    </select>
+
     <select id="selectPermissionByRole" resultType="java.lang.String">
         select p.id
         from
             role r inner join role_permission rp on r.id = rp.rid
                    INNER JOIN permission p on p.id= rp.pid
         where r.id=#{id}
+    </select>
+    <select id="permmissionTree" resultType="com.yoyo.yoyomall.entity.vo.PermissionVo">
+        SELECT * FROM permission where parent_id = #{parentId}
     </select>
 
 

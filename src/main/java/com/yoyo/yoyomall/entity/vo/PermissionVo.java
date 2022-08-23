@@ -1,32 +1,14 @@
-package com.yoyo.yoyomall.entity;
+package com.yoyo.yoyomall.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
-import java.util.List;
-
-import io.swagger.annotations.ApiModel;
+import com.yoyo.yoyomall.entity.Permission;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
-/**
- * <p>zzz
- * 
- * </p>
- *
- * @author atguigu
- * @since 2022-08-21
- */
+import java.util.List;
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@ApiModel(value="Permission对象", description="")
-public class Permission implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class PermissionVo {
     @ApiModelProperty(value = "权限id")
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
@@ -43,7 +25,5 @@ public class Permission implements Serializable {
     @ApiModelProperty(value = "父权限id")
     private String parentId;
 
-//    private List<Permission> children;//所有子权限
-
-
+    private List<PermissionVo> children;//所有子权限
 }

@@ -1,6 +1,7 @@
 package com.yoyo.yoyomall.service.impl;
 
 import com.yoyo.yoyomall.entity.Permission;
+import com.yoyo.yoyomall.entity.vo.PermissionVo;
 import com.yoyo.yoyomall.mapper.PermissionMapper;
 import com.yoyo.yoyomall.service.PermissionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -35,13 +36,13 @@ private  PermissionMapper permissionMapper;
     }
 
     @Override
-    public List<Permission> permissionTree(String parentId) {
+    public List<PermissionVo> permissionTree(String parentId) {
 
-        List<Permission> childrenPermissionList = permissionMapper.permmissionTree(parentId);
-        for (Permission permission : childrenPermissionList) {
+        List<PermissionVo> childrenPermissionList = permissionMapper.permmissionTree(parentId);
+        for (PermissionVo permissionVo : childrenPermissionList) {
 
-            List<Permission> permissionTreeList= permissionTree(permission.getId());
-            permission.setChildren(permissionTreeList);
+            List<PermissionVo> permissionTreeList= permissionTree(permissionVo.getId());
+            permissionVo.setChildren(permissionTreeList);
         }
         return  childrenPermissionList;
     }
@@ -51,8 +52,8 @@ private  PermissionMapper permissionMapper;
     public Integer deleteById(String id) {
         Integer rows =0;
        try {
-           List<Permission> permissionList = permissionTree(id);
-           for (Permission permission : permissionList) {
+           List<PermissionVo> permissionList = permissionTree(id);
+           for (PermissionVo permission : permissionList) {
                rows += deleteById(permission.getId());
            }
            rows += permissionMapper.deletePermission(id);
@@ -76,5 +77,11 @@ private  PermissionMapper permissionMapper;
     public Integer upadatePermission(Permission permission) {
         int rows = baseMapper.updateById(permission);
         return rows;
+    }
+
+    @Override
+    public Permission findById(String id) {
+        Permission permission = baseMapper.selectById(id);
+        return permission;
     }
 }

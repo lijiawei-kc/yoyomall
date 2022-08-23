@@ -1,5 +1,6 @@
 package com.yoyo.yoyomall.controller;
 import com.yoyo.yoyomall.entity.Permission;
+import com.yoyo.yoyomall.entity.vo.PermissionVo;
 import com.yoyo.yoyomall.service.PermissionService;
 import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class PermissionController {
     @RequestMapping("/childrenTree")
     public R childrenTree(String id) {
         try {
-            List<Permission> childrenTree = permissionService.permissionTree(id);
+            List<PermissionVo> childrenTree = permissionService.permissionTree(id);
             return R.ok().data("子权限列表", childrenTree);
         } catch (Exception e) {
             return R.error().msg("查询子权限失败");
@@ -98,6 +99,20 @@ public class PermissionController {
       }catch (Exception e){
           return  R.error().msg("更新权限出错");
       }
+
+    }
+    @RequestMapping("/findById")
+    public    R findById(String id){
+        try {
+            Permission permission = permissionService.findById(id);
+            if(permission ==null){
+                return R.error().msg("权限不存在");
+            }
+            return R.ok().data("permission",permission);
+        }
+        catch (Exception e){
+            return  R.error().msg("查询权限出错");
+        }
 
     }
 
