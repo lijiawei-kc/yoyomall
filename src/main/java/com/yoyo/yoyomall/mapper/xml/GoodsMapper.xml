@@ -8,30 +8,30 @@
         from
         goods g,
         goods_goodstag gg
-where gg.tid = ${tid} and g.id =gg.tid
-<if test="vo.title!=null||vo.title!=''">
-    and g.title like ${vo.title}
+where gg.tid = ${vo.tid} and g.id =gg.gid
+<if test="vo.title!=null&amp;&amp;vo.title!=''">
+    and g.title like '${vo.title}'
 </if>
-<if test="vo.pricelow!=null||vo.pricelow!=''">
+<if test="vo.pricelow!=null&amp;&amp;vo.pricelow!=''">
     and g.current_price &gt;= ${vo.pricelow}
 </if>
-        <if test="vo.pricehigh!=null||vo.pricehigh!=''">
+        <if test="vo.pricehigh!=null&amp;&amp;vo.pricehigh!=''">
             and g.current_price  &lt;= ${vo.pricehigh}
         </if>
-        <if test="vo.status!=null||vo.status!=''">
+        <if test="vo.status!=null&amp;&amp;vo.status!=''">
             and g.status = ${vo.status}
         </if>
-        <if test="vo.startTime!=null||vo.startTime!=''">
+        <if test="vo.startTime!=null&amp;&amp;vo.startTime!=''">
             and g.gmt_create &gt;= ${vo.startTime}
         </if>
-        <if test="vo.endTime!=null||vo.endTime!=''">
+        <if test="vo.endTime!=null&amp;&amp;vo.endTime!=''">
             and g.gmt_create &lt;= ${vo.endTime}
         </if>
-        <if test="vo.num!=null||vo.num!=''">
-            and g.stock &gt;= ${num}
+        <if test="vo.num!=null&amp;&amp;vo.num!=''">
+            and g.stock &gt;= ${vo.num}
         </if>
 
-        <if test="vo.ispricedesc!=null||vo.ispricedesc!=''">
+        <if test="vo.ispricedesc!=null&amp;&amp;vo.ispricedesc!=''">
             <if test="vo.ispricedesc == 'true'">
                 order by price desc
             </if>
@@ -39,7 +39,7 @@ where gg.tid = ${tid} and g.id =gg.tid
                 order by price 
             </if>
         </if>
-        <if test="vo.ispricedesc==null||vo.ispricedesc==''">
+        <if test="vo.ispricedesc==null&amp;&amp;vo.ispricedesc==''">
             order by buy_num desc
         </if>
 
