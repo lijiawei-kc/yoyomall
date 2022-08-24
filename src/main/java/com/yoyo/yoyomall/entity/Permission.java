@@ -44,8 +44,8 @@ public class Permission implements Serializable {
     @ApiModelProperty(value = "父权限id")
     private String parentId;
 
-    @TableField(exist = false)
-    private List<Permission> children;//所有子权限
+//    @TableField(exist = false)
+//    private List<Permission> children;//所有子权限
 
 
 }

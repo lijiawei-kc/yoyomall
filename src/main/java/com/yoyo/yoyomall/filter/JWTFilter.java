@@ -51,7 +51,7 @@ public class JWTFilter extends OncePerRequestFilter {
             }
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(adminVo.getAccount(),adminVo.getPassword(),authorities);
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-//todO   不通过数据库取数据而是通过redis
+
 
         }
 

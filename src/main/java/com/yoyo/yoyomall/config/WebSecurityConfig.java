@@ -34,17 +34,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
 
-//        http.formLogin().disable();//暂停springsecurity起作用.
+        http.formLogin().disable();//暂停springsecurity起作用.
 
                 http.csrf().disable();
-        http.cors();
+//        http.cors();
 //        http.addFilter(jwtFilter);
-        http
-
-                .authorizeRequests().antMatchers("/manager/admin/login","/manager/admin/loginout").anonymous()
-                .anyRequest().authenticated()
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http
+//
+//                .authorizeRequests().antMatchers("/manager/admin/login","/manager/admin/loginout").anonymous()
+//                .anyRequest().authenticated()
+//                .and()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 //
     }
