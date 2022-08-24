@@ -46,7 +46,7 @@ private RedisTemplate redisTemplate;
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    //TODO 把token放入redis中,定时保存
+    // 把token放入redis中,定时保存
     @PostMapping("/login")
     public R login(@RequestBody AdminVo admin) {
 
