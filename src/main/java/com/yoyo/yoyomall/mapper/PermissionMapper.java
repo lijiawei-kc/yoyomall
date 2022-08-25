@@ -2,6 +2,7 @@ package com.yoyo.yoyomall.mapper;
 
 import com.yoyo.yoyomall.entity.Permission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yoyo.yoyomall.entity.vo.PermissionVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,7 +19,7 @@ import java.util.Map;
  */
 @Mapper
 public interface PermissionMapper extends BaseMapper<Permission> {
-    List<Permission> permmissionTree(@Param("parentId") String parentId);
+    List<PermissionVo> permmissionTree(@Param("parentId") String parentId);
     Integer deletePermission(@Param("id") String id);
     Integer deleteRolePermission(@Param("id") String id);
     List<String> selectPermissionByRole(@Param("id") String id);
