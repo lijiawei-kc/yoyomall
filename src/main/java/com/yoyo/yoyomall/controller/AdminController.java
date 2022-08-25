@@ -59,6 +59,7 @@ private RedisTemplate redisTemplate;
                 throw new YoyoException(20001, "认证失败");
             else {
 
+
                 String jwtToken = JwtUtils.getJwtToken(authenticate.getPrincipal().toString());
 
                 String s = authenticate.getPrincipal().toString().substring(authenticate.getPrincipal().toString().lastIndexOf("Username: "));
@@ -69,7 +70,7 @@ private RedisTemplate redisTemplate;
 
                 redis.set(account,adminVo, Duration.ofDays(7));
 
-                return R.ok().data("access_token",jwtToken);
+                return R.ok().data("Access_token",jwtToken);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,7 +98,7 @@ redisTemplate.delete(admin.getAccount());
 
     @GetMapping("/test")
 //    @PreAuthorize("hasAnyAuthority('sys:test','sys:test:test')")
-    @PreAuthorize("hasAnyRole('superadmin','test01')")
+    @PreAuthorize("hasAnyRole('superadmin','test01262')")
     public R test() {
         throw new YoyoException(20001, "////");
 //        return R.ok();
