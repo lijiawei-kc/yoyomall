@@ -69,7 +69,7 @@ private RedisTemplate redisTemplate;
 
                 redis.set(account,adminVo, Duration.ofDays(7));
 
-                return R.ok().data("access_token",jwtToken);
+                return R.ok().data("Access_token",jwtToken);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -30,6 +30,8 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
 
 @Autowired
 private GoodsGoodstagService goodstagService;
+@Autowired
+private  GoodsMapper goodsMapper;
     @Override
     public Goods selectById(String id) {
         try {
@@ -123,9 +125,10 @@ private GoodsGoodstagService goodstagService;
     public void updateById(GoodsVo goods) {
         Goods goods1 = new Goods();
         BeanUtils.copyProperties(goods,goods1);
-
-
         baseMapper.updateById(goods1);
+        //更新名字时更新订单表中对应商品名
+        goodsMapper.updateOrdersGoodsNameById(goods.getId(),goods.getTitle());
+
         goodstagService.deleteList(goods.getId());
         if (!StringUtils.isNullOrEmpty(goods.getTid().toString()))
         goodstagService.saveList(goods.getTid(),goods.getId());
@@ -140,4 +143,5 @@ private GoodsGoodstagService goodstagService;
         goodstagService.deleteList(id);
 
     }
+
 }

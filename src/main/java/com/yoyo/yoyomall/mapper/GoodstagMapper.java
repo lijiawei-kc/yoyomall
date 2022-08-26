@@ -13,4 +13,5 @@ public interface GoodstagMapper extends BaseMapper<Goodstag> {
 //  Goodstag getAll();
 
     Goodstag Test(@Param("id") String id);
+
 }

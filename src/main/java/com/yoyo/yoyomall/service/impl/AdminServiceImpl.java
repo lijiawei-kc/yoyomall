@@ -72,6 +72,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             List<String> role = admin.getRole();
             adminRoleService.saveList(role,admin1.getId());
         }catch (Exception e){
+            e.printStackTrace();
             throw new YoyoException(20001,"保存失败");
         }
 

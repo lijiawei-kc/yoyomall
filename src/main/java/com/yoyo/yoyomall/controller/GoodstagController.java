@@ -99,6 +99,15 @@ public class GoodstagController {
             return  R.error().msg("获取标签列表失败");
         }
 }
+@RequestMapping("/getAllByNmae")
+    public R getAllList(String name){
+        List<Goodstag> goodstagList = goodstagService.findByNameGoodsTagList(name);
+    try {
+        return  R.ok().msg("获取商品标签列表成功").data("goodstagList",goodstagList);
+    }catch (Exception e){
+        return  R.error().msg("获取标签列表失败");
+    }
+}
 
 }
 
