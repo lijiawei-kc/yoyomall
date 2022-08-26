@@ -77,7 +77,7 @@ public class OrdersController {
     }
 
     //分页查询订单列表
-    @GetMapping("/selectAll")
+    @GetMapping("/selectall")
     public R selectAll(String uName,String gName,Integer currentPage,Integer pageSize){
         R response;
         try {

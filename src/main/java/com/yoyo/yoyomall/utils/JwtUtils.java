@@ -104,9 +104,10 @@ public class JwtUtils {
      * @return
      */
     public static String getIdByJwtToken(HttpServletRequest request) {
-        String jwtToken = request.getHeader("Token");
+        String jwtToken = request.getHeader("Authorization");
         if (StringUtils.isEmpty(jwtToken)) return "";
-        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
+        String token = jwtToken.substring(jwtToken.indexOf(" ") + 1);
+        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(token);
         Claims claims = claimsJws.getBody();
         return (String) claims.get("id");
     }

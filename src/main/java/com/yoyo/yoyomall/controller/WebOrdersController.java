@@ -25,7 +25,7 @@ public class WebOrdersController {
     @Autowired
     private OrdersService orderService;
 
-    @PostMapping("/createOrder")
+    @PostMapping("/createorder")
     //生成订单
     public R insert(Orders orders){
         R response;
@@ -65,7 +65,7 @@ public class WebOrdersController {
     }
 
     //查看用户所有订单列表
-    @GetMapping("/selectAll")
+    @GetMapping("/selectall")
     public R selectAllList(String uId,String gName,Integer currentPage,Integer pageSize){
         R response;
         try {
@@ -79,7 +79,7 @@ public class WebOrdersController {
     }
 
     //生成支付页面
-    @GetMapping("/createPay")
+    @GetMapping("/createpay")
     public R createPay(String id){
         R response = null;
 
