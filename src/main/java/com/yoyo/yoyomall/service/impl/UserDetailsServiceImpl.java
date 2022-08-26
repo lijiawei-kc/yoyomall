@@ -39,7 +39,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //                pidList.add(pid);
 //            }
 //        }
-
         AdminVo adminVo = adminService.selectInfoByAccount(account);
 
 //

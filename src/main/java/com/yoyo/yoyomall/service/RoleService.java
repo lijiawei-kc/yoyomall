@@ -22,4 +22,6 @@ public interface RoleService extends IService<Role> {
     public List<Role> selectAll(String des,Integer currentPage, Integer pageSize);
 
     public Integer count(String des);
+
+    public List<Role> selectAllList();
 }

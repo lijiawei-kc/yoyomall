@@ -36,12 +36,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.formLogin().disable();//暂停springsecurity起作用.
 
-                http.csrf().disable();
+        http.csrf().disable();
         http.cors();
         http.addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class);
+
         http
 
-                .authorizeRequests().antMatchers("/manager/admin/login","/manager/**").anonymous()
+                .authorizeRequests().antMatchers("/manager/admin/login","/web/**").anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

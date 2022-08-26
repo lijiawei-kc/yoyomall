@@ -80,13 +80,25 @@ public class RoleController {
     }
 
     //分页查询职务列表
-    @GetMapping("/selectAll")
+    @GetMapping("/selectall")
     public R selectAll(String des,Integer currentPage,Integer pageSize){
         R response;
         try {
             List<Role> roleList = roleService.selectAll(des, currentPage, pageSize);
             Integer total = roleService.count(des);
             response=R.ok().data("roleList",roleList).data("total",total);
+        }catch (Exception e){
+            response=R.error().msg("查询职务列表失败");
+        }
+        return response;
+    }
+
+    @GetMapping("/selectAllList")
+    public R selectAllList(){
+        R response;
+        try {
+            List<Role> roleList = roleService.selectAllList();
+            response=R.ok().data("roleList",roleList);
         }catch (Exception e){
             response=R.error().msg("查询职务列表失败");
         }

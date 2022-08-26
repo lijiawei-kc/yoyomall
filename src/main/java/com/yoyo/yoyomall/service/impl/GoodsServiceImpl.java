@@ -3,18 +3,22 @@ package com.yoyo.yoyomall.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mysql.cj.util.StringUtils;
 import com.yoyo.yoyomall.entity.Goods;
+import com.yoyo.yoyomall.entity.GoodsGoodstag;
+import com.yoyo.yoyomall.entity.Goodstag;
 import com.yoyo.yoyomall.entity.vo.GoodsQueryVo;
 import com.yoyo.yoyomall.entity.vo.GoodsVo;
 import com.yoyo.yoyomall.mapper.GoodsMapper;
 import com.yoyo.yoyomall.service.GoodsGoodstagService;
 import com.yoyo.yoyomall.service.GoodsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yoyo.yoyomall.service.GoodstagService;
 import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,12 +35,26 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
 @Autowired
 private GoodsGoodstagService goodstagService;
 @Autowired
-private  GoodsMapper goodsMapper;
+private GoodstagService goodstagService1;
     @Override
-    public Goods selectById(String id) {
+    public GoodsVo selectById(String id) {
         try {
             Goods goods = baseMapper.selectById(id);
-            return goods;
+            GoodsVo goodsVo = new GoodsVo();
+            ArrayList<String> goodstags = new ArrayList<>();
+            List<GoodsGoodstag> gg = goodstagService.list(new QueryWrapper<GoodsGoodstag>().eq("gid", id));
+            for (int i = 0; i < gg.size(); i++) {
+                GoodsGoodstag goodsGoodstag = gg.get(i);
+
+                Goodstag byId = goodstagService1.findById(goodsGoodstag.getTid());
+
+                goodstags.add(byId.getId());
+
+            }
+            BeanUtils.copyProperties(goods,goodsVo);
+            goodsVo.setTid(goodstags);
+
+            return goodsVo;
         }catch (Exception e){
             e.printStackTrace();
             throw new YoyoException(20001,"查询商品异常...");
@@ -47,7 +65,7 @@ private  GoodsMapper goodsMapper;
 
     @Override
     public List<Goods> selectAll(String page,String limit, GoodsQueryVo goodsQueryVo) {
-        Integer p = Integer.valueOf(page)*Integer.valueOf(limit);
+        Integer p = (Integer.valueOf(page)-1)*Integer.valueOf(limit);
         page=p.toString();
 
         QueryWrapper queryWrapper =new QueryWrapper();
@@ -90,9 +108,9 @@ private  GoodsMapper goodsMapper;
         String ispricedesc = goodsQueryVo.getIspricedesc();
         if(!StringUtils.isNullOrEmpty(ispricedesc)){
             if (ispricedesc.equals("true"))
-                queryWrapper.orderByDesc("price");
+                queryWrapper.orderByDesc("current_price");
             if (ispricedesc.equals("false"))
-                queryWrapper.orderByAsc("price");
+                queryWrapper.orderByAsc("current_price");
         }
 
         String status = goodsQueryVo.getStatus();
@@ -114,8 +132,10 @@ private  GoodsMapper goodsMapper;
         Goods goods1 = new Goods();
         BeanUtils.copyProperties(goods,goods1);
         this.save(goods1);
+        String id =  baseMapper.selectLastInsertId();
+
         List<String> tid = goods.getTid();
-      String id =  baseMapper.selectLastInsertId();
+
 
         goodstagService.saveList(tid,id);
     }
@@ -125,14 +145,17 @@ private  GoodsMapper goodsMapper;
     public void updateById(GoodsVo goods) {
         Goods goods1 = new Goods();
         BeanUtils.copyProperties(goods,goods1);
-        baseMapper.updateById(goods1);
-        //更新名字时更新订单表中对应商品名
-        goodsMapper.updateOrdersGoodsNameById(goods.getId(),goods.getTitle());
 
+
+        baseMapper.updateById(goods1);
         goodstagService.deleteList(goods.getId());
         if (!StringUtils.isNullOrEmpty(goods.getTid().toString()))
-        goodstagService.saveList(goods.getTid(),goods.getId());
-        goodstagService.deleteList(goods.getId());
+        {
+            goodstagService.deleteList(goods.getId());
+            goodstagService.saveList(goods.getTid(),goods.getId());
+        }
+
+
 
     }
 
@@ -143,5 +166,4 @@ private  GoodsMapper goodsMapper;
         goodstagService.deleteList(id);
 
     }
-
 }
