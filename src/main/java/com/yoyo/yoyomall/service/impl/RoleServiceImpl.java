@@ -105,4 +105,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         Integer count = baseMapper.selectCount(queryWrapper);
         return count;
     }
+
+    @Override
+    public List<Role> selectAllList() {
+        List<Role> roleList = baseMapper.selectList(new QueryWrapper<>());
+        return roleList;
+    }
 }
