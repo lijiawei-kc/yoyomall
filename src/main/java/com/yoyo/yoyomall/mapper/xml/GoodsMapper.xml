@@ -33,10 +33,10 @@ where gg.tid = ${vo.tid} and g.id =gg.gid
 
         <if test="vo.ispricedesc!=null&amp;&amp;vo.ispricedesc!=''">
             <if test="vo.ispricedesc == 'true'">
-                order by price desc
+                order by current_price desc
             </if>
             <if test="vo.ispricedesc == 'false'">
-                order by price 
+                order by current_price
             </if>
         </if>
         <if test="vo.ispricedesc==null&amp;&amp;vo.ispricedesc==''">

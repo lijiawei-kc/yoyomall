@@ -46,6 +46,26 @@ private RedisTemplate redisTemplate;
     @Autowired
     private AuthenticationManager authenticationManager;
 
+
+
+    @PostMapping("/info")
+    public R getInfo(String token) {
+
+        try {
+
+            String jwtToken = JwtUtils.getInfoByJwtToken(token);
+            String s = jwtToken.substring(jwtToken.lastIndexOf("Username: "));
+            String account=s.substring(10,s.indexOf(59));
+            ValueOperations<String, AdminVo> redis = redisTemplate.opsForValue();
+            AdminVo adminVo = redis.get(account);
+
+            return R.ok().data("info",adminVo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new YoyoException(20001, "保存失败");
+        }
+
+    }
     // 把token放入redis中,定时保存
     @PostMapping("/login")
     public R login(@RequestBody AdminVo admin) {

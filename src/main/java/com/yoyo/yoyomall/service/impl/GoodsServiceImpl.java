@@ -108,9 +108,9 @@ private GoodstagService goodstagService1;
         String ispricedesc = goodsQueryVo.getIspricedesc();
         if(!StringUtils.isNullOrEmpty(ispricedesc)){
             if (ispricedesc.equals("true"))
-                queryWrapper.orderByDesc("price");
+                queryWrapper.orderByDesc("current_price");
             if (ispricedesc.equals("false"))
-                queryWrapper.orderByAsc("price");
+                queryWrapper.orderByAsc("current_price");
         }
 
         String status = goodsQueryVo.getStatus();

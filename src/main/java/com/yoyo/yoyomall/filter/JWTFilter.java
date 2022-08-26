@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Component
 public class JWTFilter extends OncePerRequestFilter {
@@ -36,47 +37,44 @@ public class JWTFilter extends OncePerRequestFilter {
     private AdminService adminService;
     @Autowired
     private RedisTemplate redisTemplate;
+
+    private static ReentrantLock l = new ReentrantLock();
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-try {
-//    Cookie[] cookies = httpServletRequest.getCookies();
-//    System.out.println(httpServletRequest.getCookies());
-//    if(cookies!=null)
-//    for (int i = 0; i < cookies.length; i++) {
-//        System.out.println(cookies[i]);
-//    }
 
+        l.lock();
+        try {
+            String token = httpServletRequest.getHeader("Access_token");
 
+            if (!StringUtils.isNullOrEmpty(token)) {
+//        token=token.substring(7);
+                String jwtToken = JwtUtils.getInfoByJwtToken(token);
+                String s = jwtToken.substring(jwtToken.lastIndexOf("Username: "));
+                String account = s.substring(10, s.indexOf(59));
 
+                ValueOperations<String, AdminVo> redis = redisTemplate.opsForValue();
+                AdminVo adminVo = redis.get(account);
 
-
-    String token = httpServletRequest.getHeader("Authorization");
-
-
-    if(!StringUtils.isNullOrEmpty(token)){
-        token=token.substring(7);
-        String jwtToken = JwtUtils.getInfoByJwtToken(token);
-        String s = jwtToken.substring(jwtToken.lastIndexOf("Username: "));
-        String account=s.substring(10,s.indexOf(59));
-        ValueOperations<String, AdminVo> redis = redisTemplate.opsForValue();
-        AdminVo adminVo = redis.get(account);
 //            AdminVo adminVo = adminService.selectInfoByAccount(account);
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        List<String> roles = adminVo.getRole();
-        for (int i = 0; i < roles.size(); i++) {
-            SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roles.get(i));
-            authorities.add(authority);
+                Collection<GrantedAuthority> authorities = new ArrayList<>();
+                List<String> roles = adminVo.getRole();
+                for (int i = 0; i < roles.size(); i++) {
+                    SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roles.get(i));
+                    authorities.add(authority);
+                }
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(adminVo.getAccount(), adminVo.getPassword(), authorities);
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+
+            }
+
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new YoyoException(20001, "认证出错了");
+        } finally {
+            l.unlock();
         }
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(adminVo.getAccount(),adminVo.getPassword(),authorities);
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-
-    }
-
-    filterChain.doFilter(httpServletRequest,httpServletResponse);
-}catch (Exception e){
-    e.printStackTrace();
-    throw new YoyoException(20001,"认证出错了");
-}
 
     }
 }
