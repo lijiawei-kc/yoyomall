@@ -55,8 +55,8 @@ public class OrdersController {
     public R update(Orders orders){
         R response;
         try {
-            orderService.update(orders);
-            response=R.ok();
+            Integer rows = orderService.update(orders);
+            response=R.ok().data("rows",rows);
         }catch (Exception e){
             response=R.error().msg("修改订单失败");
         }
