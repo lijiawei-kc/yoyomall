@@ -153,7 +153,7 @@ redisTemplate.delete(admin.getAccount());
     @PostMapping("/selectall")
     public R selectall() {
         try {
-            List<Admin> list = adminService.list(null);
+            List<AdminVo> list = adminService.selectAll();
             return R.ok().data("list", list);
         } catch (Exception e) {
             throw new YoyoException(20001, "查询失败");

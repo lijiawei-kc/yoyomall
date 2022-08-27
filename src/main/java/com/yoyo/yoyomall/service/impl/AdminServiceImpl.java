@@ -10,6 +10,7 @@ import com.yoyo.yoyomall.service.AdminRoleService;
 import com.yoyo.yoyomall.service.AdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoyo.yoyomall.service.PermissionService;
+import com.yoyo.yoyomall.service.RoleService;
 import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,25 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public void test(){
 
    }
+
+    @Override
+    @Transactional //开启事务
+    public List<AdminVo> selectAll() {
+        List<AdminVo> adminVoList = new ArrayList<>();
+        List<Admin> adminList = baseMapper.selectList(new QueryWrapper<>());
+        for (Admin admin : adminList) {
+            List<Role> roles = adminRoleService.selectRoleList(admin.getId());
+            AdminVo adminVo = new AdminVo();
+            BeanUtils.copyProperties(admin,adminVo);
+            ArrayList<String> list = new ArrayList<>();
+            for (Role role : roles) {
+                list.add(role.getName());
+            }
+            adminVo.setRole(list);
+            adminVoList.add(adminVo);
+        }
+        return adminVoList;
+    }
 
     @Override
     @Transactional
@@ -101,6 +121,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             throw new YoyoException(20001,"失败");
         }
     }
+
 
     @Override
     public AdminVo selectInfoByAccount(String account) {
