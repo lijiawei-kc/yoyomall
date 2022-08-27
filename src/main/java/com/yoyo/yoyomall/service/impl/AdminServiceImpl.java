@@ -113,12 +113,12 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             ArrayList<String> authors = new ArrayList<>();
             List<Role> roles = adminRoleService.selectRoleList(admin.getId());
             for (int i = 0; i < roles.size(); i++) {
-                String roleName="ROLE_"+roles.get(i).getName();
+                String roleName=roles.get(i).getName();
                 authors.add(roleName);
                 String rid = roles.get(i).getId();
                 List<String> list = permissionService.selectPermissionByRole(rid);
                 for (int i1 = 0; i1 < list.size(); i1++) {
-                    String pid = list.get(i);
+                    String pid = list.get(i1);
                     Permission permission = permissionService.getById(pid);
                     String permissionName = permission.getName();
 

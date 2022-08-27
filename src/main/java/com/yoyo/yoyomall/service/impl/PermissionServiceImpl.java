@@ -1,5 +1,6 @@
 package com.yoyo.yoyomall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yoyo.yoyomall.entity.Permission;
 import com.yoyo.yoyomall.entity.vo.PermissionVo;
 import com.yoyo.yoyomall.mapper.PermissionMapper;
@@ -83,5 +84,11 @@ private  PermissionMapper permissionMapper;
     public Permission findById(String id) {
         Permission permission = baseMapper.selectById(id);
         return permission;
+    }
+
+    @Override
+    public List<Permission> selectAll() {
+        List<Permission> permissions = baseMapper.selectList(new QueryWrapper<>());
+        return permissions;
     }
 }

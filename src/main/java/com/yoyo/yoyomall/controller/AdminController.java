@@ -62,7 +62,7 @@ private RedisTemplate redisTemplate;
             return R.ok().data("info",adminVo);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new YoyoException(20001, "保存失败");
+            throw new YoyoException(20001, "获取用户信息失败");
         }
 
     }

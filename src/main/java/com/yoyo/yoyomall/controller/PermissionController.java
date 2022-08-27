@@ -4,9 +4,7 @@ import com.yoyo.yoyomall.entity.vo.PermissionVo;
 import com.yoyo.yoyomall.service.PermissionService;
 import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,8 +28,8 @@ public class PermissionController {
      * @param permission
      * @return R
      */
-    @RequestMapping("/add")
-    public R insert(Permission permission) {
+    @PostMapping("/add")
+    public R insert(@RequestBody Permission permission) {
         try {
             permissionService.insert(permission);
             return R.ok().msg("添加权限成功");
@@ -49,7 +47,7 @@ public class PermissionController {
     public R childrenTree(String id) {
         try {
             List<PermissionVo> childrenTree = permissionService.permissionTree(id);
-            return R.ok().data("子权限列表", childrenTree);
+            return R.ok().data("childrenTree", childrenTree);
         } catch (Exception e) {
             return R.error().msg("查询子权限失败");
 
@@ -89,7 +87,7 @@ public class PermissionController {
      * @return
      */
     @RequestMapping("/updateById")
-    public R updateById(Permission permission) {
+    public R updateById(@RequestBody Permission permission) {
       try {
           Integer rows = permissionService.upadatePermission(permission);
           if (rows==0){
@@ -112,6 +110,18 @@ public class PermissionController {
         }
         catch (Exception e){
             return  R.error().msg("查询权限出错");
+        }
+
+    }
+
+    @GetMapping("/selectAll")
+    public  R selectAll(){
+        try {
+            List<Permission> permissionList = permissionService.selectAll();
+            return R.ok().data("permissionList",permissionList);
+        }
+        catch (Exception e){
+            return  R.error().msg("查询权限列表出错");
         }
 
     }

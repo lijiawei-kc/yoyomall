@@ -2,6 +2,7 @@ package com.yoyo.yoyomall.filter;
 
 import com.mysql.cj.util.StringUtils;
 import com.yoyo.yoyomall.entity.Admin;
+import com.yoyo.yoyomall.entity.User;
 import com.yoyo.yoyomall.entity.vo.AdminVo;
 import com.yoyo.yoyomall.service.AdminService;
 import com.yoyo.yoyomall.utils.JwtUtils;
@@ -47,8 +48,21 @@ public class JWTFilter extends OncePerRequestFilter {
         try {
             String token = httpServletRequest.getHeader("Access_token");
 
-            if (!StringUtils.isNullOrEmpty(token)) {
-//        token=token.substring(7);
+            cd:if (!StringUtils.isNullOrEmpty(token)) {
+                //user用户登录
+                String requestURI = httpServletRequest.getRequestURI();
+                requestURI = requestURI.substring(0, requestURI.lastIndexOf("/"));
+                if(requestURI.equals("/web/user")){
+                    String nickname = JwtUtils.getInfoByJwtToken(token);
+                    ValueOperations<String, User> redis = redisTemplate.opsForValue();
+                    User user = redis.get(nickname);
+                    if(user==null){
+                        throw new YoyoException(20001,"认证出错了");
+                    }
+                    break cd;
+                }
+                //admin用户登录
+//              token=token.substring(7);
                 String jwtToken = JwtUtils.getInfoByJwtToken(token);
                 String s = jwtToken.substring(jwtToken.lastIndexOf("Username: "));
                 String account = s.substring(10, s.indexOf(59));

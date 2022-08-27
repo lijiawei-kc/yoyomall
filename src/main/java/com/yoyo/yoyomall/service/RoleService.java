@@ -14,8 +14,8 @@ import java.util.List;
  * @since 2022-08-22
  */
 public interface RoleService extends IService<Role> {
-    public Integer insert(Role role,String[] permissionIdList);
-    public Integer update(Role role,String[] permissionIdList);
+    public Integer insert(Role role);
+    public Integer update(Role role);
     public Integer delete(String id);
 
     public Role selectById(String id);

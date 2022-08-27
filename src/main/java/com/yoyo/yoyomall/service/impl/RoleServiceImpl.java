@@ -32,9 +32,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
     @Override
     @Transactional //开启事务
-    public Integer insert(Role role, String[] permissionIdList) {
+    public Integer insert(Role role) {
         int row = baseMapper.insert(role);
         String rid = role.getId();
+        List<String> permissionIdList = role.getPermissionIdList();
 
         for (String pid : permissionIdList) {
             RolePermission rolePermission = new RolePermission();
@@ -46,11 +47,13 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
-    public Integer update(Role role, String[] permissionIdList) {
+    @Transactional //开启事务
+    public Integer update(Role role) {
         UpdateWrapper updateWrapper = new UpdateWrapper();
         updateWrapper.eq("id",role.getId());
         int row = baseMapper.update(role,updateWrapper);
         String rid = role.getId();
+        List<String> permissionIdList = role.getPermissionIdList();
 
         rolePermissionService.deleteByRid(rid);
 
@@ -64,6 +67,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
+    @Transactional //开启事务
     public Integer delete(String id) {
         int row = baseMapper.deleteById(id);
 
@@ -72,6 +76,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
+    @Transactional //开启事务
     public Role selectById(String id) {
         Role role = baseMapper.selectById(id);
 
@@ -82,6 +87,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
+    @Transactional //开启事务
     public List<Role> selectAll(String des, Integer currentPage, Integer pageSize) {
         QueryWrapper<Role> queryWrapper = new QueryWrapper();
         queryWrapper.apply(!StringUtils.isNullOrEmpty(des),"match(des) against ('"+des+"')");
