@@ -86,7 +86,7 @@ public class FileController {
         String substring = path.substring(path.lastIndexOf(".") + 1);
         byte[] bytes = fastFileStorageClient.downloadFile(path.substring(0, path.indexOf("/")), path.substring(path.indexOf("/") + 1), new DownloadByteArray());
         response.setCharacterEncoding("UTF-8");
-        response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(JAXWSUtils.getUUID() + "." + substring, "UTF-8"));
+        response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode("下载的文件.jpg", "UTF-8"));
         // 写出
         ServletOutputStream outputStream = response.getOutputStream();
         IOUtils.write(bytes, outputStream);

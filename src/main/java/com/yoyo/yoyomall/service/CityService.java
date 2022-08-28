@@ -17,15 +17,19 @@ import java.util.List;
  * @since 2022-08-21
  */
 public interface CityService extends IService<City> {
-     R getAllProvince();
+     R getAllCity();
      R get8Id(String id);
      R get8Pid(String id);
 
-     R save(String name,String pid);
+     R save(String name,String pname);
 
      R update(String name,String pid,String id);
 
      R delete(String id);
+
+     R get8Name(String name);
+
+     R get8Pname(String pname);
 
 
 }
