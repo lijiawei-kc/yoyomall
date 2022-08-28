@@ -72,5 +72,13 @@ public class GoodstagServiceImpl extends ServiceImpl<GoodstagMapper, Goodstag> i
         return rows;
     }
 
+    @Override
+    public List<Goodstag> findByNameGoodsTagList(String name) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.like("name",name);
+        List<Goodstag> goodstagList = baseMapper.selectList(queryWrapper);
+        return  goodstagList;
+    }
+
 
 }

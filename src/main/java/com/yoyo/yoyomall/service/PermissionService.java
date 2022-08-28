@@ -23,4 +23,5 @@ public interface PermissionService extends IService<Permission> {
     Integer upadatePermission(Permission permission);
     Permission findById(String id);
 
+    List<Permission> selectAll();
 }

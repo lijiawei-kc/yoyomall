@@ -55,8 +55,8 @@ public class OrdersController {
     public R update(Orders orders){
         R response;
         try {
-            orderService.update(orders);
-            response=R.ok();
+            Integer rows = orderService.update(orders);
+            response=R.ok().data("rows",rows);
         }catch (Exception e){
             response=R.error().msg("修改订单失败");
         }
@@ -69,6 +69,7 @@ public class OrdersController {
         R response;
         try {
             Orders orders = orderService.selectById(id);
+            System.out.println(orders);
             response=R.ok().data("orders",orders);
         }catch (Exception e){
             response=R.error().msg("查询订单信息失败");
@@ -83,6 +84,8 @@ public class OrdersController {
         try {
             List<Orders> ordersList = orderService.selectAll(uName,gName,currentPage, pageSize);
             Integer total = orderService.count(uName, gName);
+            System.out.println(total+"total");
+            System.out.println(ordersList+"orderList");
             response=R.ok().data("ordersList",ordersList).data("total",total);
         }catch (Exception e){
             response=R.error().msg("查询订单列表失败");

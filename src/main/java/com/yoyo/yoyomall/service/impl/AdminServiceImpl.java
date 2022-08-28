@@ -10,6 +10,7 @@ import com.yoyo.yoyomall.service.AdminRoleService;
 import com.yoyo.yoyomall.service.AdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoyo.yoyomall.service.PermissionService;
+import com.yoyo.yoyomall.service.RoleService;
 import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,25 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
    }
 
     @Override
+    @Transactional //开启事务
+    public List<AdminVo> selectAll() {
+        List<AdminVo> adminVoList = new ArrayList<>();
+        List<Admin> adminList = baseMapper.selectList(new QueryWrapper<>());
+        for (Admin admin : adminList) {
+            List<Role> roles = adminRoleService.selectRoleList(admin.getId());
+            AdminVo adminVo = new AdminVo();
+            BeanUtils.copyProperties(admin,adminVo);
+            ArrayList<String> list = new ArrayList<>();
+            for (Role role : roles) {
+                list.add(role.getName());
+            }
+            adminVo.setRole(list);
+            adminVoList.add(adminVo);
+        }
+        return adminVoList;
+    }
+
+    @Override
     @Transactional
     public void deleteById(String id) {
        try {
@@ -72,6 +92,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             List<String> role = admin.getRole();
             adminRoleService.saveList(role,admin1.getId());
         }catch (Exception e){
+            e.printStackTrace();
             throw new YoyoException(20001,"保存失败");
         }
 
@@ -101,6 +122,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         }
     }
 
+
     @Override
     public AdminVo selectInfoByAccount(String account) {
         try {
@@ -112,12 +134,12 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             ArrayList<String> authors = new ArrayList<>();
             List<Role> roles = adminRoleService.selectRoleList(admin.getId());
             for (int i = 0; i < roles.size(); i++) {
-                String roleName="ROLE_"+roles.get(i).getName();
+                String roleName=roles.get(i).getName();
                 authors.add(roleName);
                 String rid = roles.get(i).getId();
                 List<String> list = permissionService.selectPermissionByRole(rid);
                 for (int i1 = 0; i1 < list.size(); i1++) {
-                    String pid = list.get(i);
+                    String pid = list.get(i1);
                     Permission permission = permissionService.getById(pid);
                     String permissionName = permission.getName();
 

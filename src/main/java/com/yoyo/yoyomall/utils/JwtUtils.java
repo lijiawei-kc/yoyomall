@@ -104,7 +104,7 @@ public class JwtUtils {
      * @return
      */
     public static String getIdByJwtToken(HttpServletRequest request) {
-        String jwtToken = request.getHeader("Authorization");
+        String jwtToken = request.getHeader("Access_token");
         if (StringUtils.isEmpty(jwtToken)) return "";
         String token = jwtToken.substring(jwtToken.indexOf(" ") + 1);
         Jws<Claims> claimsJws = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(token);

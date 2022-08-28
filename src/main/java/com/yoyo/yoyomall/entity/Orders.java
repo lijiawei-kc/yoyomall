@@ -71,8 +71,6 @@ public class Orders implements Serializable {
     @ApiModelProperty(value = "修改时间")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModify;
-
-
     @ApiModelProperty(value = "收货地址")
     @TableField(exist = false)
     private String receivingAddress;

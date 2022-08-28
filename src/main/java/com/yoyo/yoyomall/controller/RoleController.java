@@ -5,10 +5,7 @@ import com.yoyo.yoyomall.entity.Role;
 import com.yoyo.yoyomall.service.RoleService;
 import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,10 +26,10 @@ public class RoleController {
 
     @PostMapping("/save")
     //添加职务
-    public R insert(Role role,String[] permissionIdList){
+    public R insert(Role role){
         R response;
         try {
-            roleService.insert(role,permissionIdList);
+            roleService.insert(role);
 
             response=R.ok();
         }catch (Exception e){
@@ -55,10 +52,10 @@ public class RoleController {
     }
     //修改职务
     @PostMapping("/update")
-    public R update(Role role,String[] permissionIdList){
+    public R update(Role role){
         R response;
         try {
-            roleService.update(role,permissionIdList);
+            roleService.update(role);
             response=R.ok();
         }catch (Exception e){
             response=R.error().msg("修改职务失败");
@@ -86,7 +83,7 @@ public class RoleController {
         try {
             List<Role> roleList = roleService.selectAll(des, currentPage, pageSize);
             Integer total = roleService.count(des);
-            response=R.ok().data("roleList",roleList).data("total",total);
+            response=R.ok().data("roleList",roleList).data("total",total).data("currentPage",currentPage).data("pageSize",pageSize);
         }catch (Exception e){
             response=R.error().msg("查询职务列表失败");
         }

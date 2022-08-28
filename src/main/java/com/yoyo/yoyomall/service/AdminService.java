@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yoyo.yoyomall.entity.vo.AdminVo;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -26,4 +28,6 @@ public interface AdminService extends IService<Admin> {
     Admin selectByAccount(String account);
 
     AdminVo selectInfoByAccount(String account);
+
+    List<AdminVo> selectAll();
 }

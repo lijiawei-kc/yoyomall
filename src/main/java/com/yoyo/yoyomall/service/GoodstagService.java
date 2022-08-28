@@ -20,5 +20,6 @@ public interface GoodstagService extends IService<Goodstag> {
        Integer deleteById(String id);
        Goodstag findByName(String name);
       Integer update (Goodstag goodstag);
+      List<Goodstag> findByNameGoodsTagList(String name);
 
 }

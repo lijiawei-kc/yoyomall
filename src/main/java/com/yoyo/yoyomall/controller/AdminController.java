@@ -62,7 +62,7 @@ private RedisTemplate redisTemplate;
             return R.ok().data("info",adminVo);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new YoyoException(20001, "保存失败");
+            throw new YoyoException(20001, "获取用户信息失败");
         }
 
     }
@@ -153,7 +153,7 @@ redisTemplate.delete(admin.getAccount());
     @PostMapping("/selectall")
     public R selectall() {
         try {
-            List<Admin> list = adminService.list(null);
+            List<AdminVo> list = adminService.selectAll();
             return R.ok().data("list", list);
         } catch (Exception e) {
             throw new YoyoException(20001, "查询失败");

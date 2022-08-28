@@ -101,7 +101,6 @@ public class WebUserController {
         return R.ok().msg("修改成功");
     }
 
-    //TODO
     @GetMapping("/info")
     public R selectInfo(HttpServletRequest request){
         try {
