@@ -28,34 +28,47 @@ import java.util.List;
 public class CityController {
     @Autowired
     CityService cityService;
-
 //全查
+    /**
+     * 查询市列表
+     *
+     * @return adminVo
+     */
     @GetMapping("/selectcity")
-    public R getAllProvince(){
-        return  cityService.getAllProvince();
+    public R getAllCity(){
+        return  cityService.getAllCity();
     }
 //根据id查
+    /**
+     * 查询市列表
+     *
+     * @return adminVo
+     */
     @GetMapping("/select")
     public R get8Id(String id){
        return cityService.get8Id(id);
     }
-    //根据pid查
+    //根据pid查(一个省里的所有市)
     @GetMapping("/selectByPid")
     public R get8Pid(String id){
        return cityService.get8Pid(id);
     }
+    @GetMapping("/selectByName")
+    public  R get8Name(String name){return cityService.get8Name(name);}
 
+    @GetMapping("/selectByPname")
+    public R get8Pname(String pname){return cityService.get8Pname(pname);}
+    //添加市
     @GetMapping("/save")
-    public R save(String name,String pid){
-        return cityService.save(name,pid);
+    public R save(String name,String pname){
+        return cityService.save(name,pname);
     }
-
+    //修改市
     @GetMapping("/update")
     public R update(String name,String pid,String id){
         return cityService.update(name,pid,id);
-
     }
-
+    //删除市
     @GetMapping("/delete")
     public R delete(String id){
         return cityService.delete(id);

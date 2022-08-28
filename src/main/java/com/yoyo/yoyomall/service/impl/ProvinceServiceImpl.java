@@ -89,7 +89,7 @@ public class ProvinceServiceImpl extends ServiceImpl<ProvinceMapper, Province> i
         try {
             i=provinceMapper.deleteById(id);
         }catch (Exception e){
-            return R.error().msg("删除错误");
+            return R.error().msg("删除错误,请检查该省下的市是否删除完全");
         }
         return i==1?R.ok().msg("删除成功"):R.error().msg("删除失败");
     }

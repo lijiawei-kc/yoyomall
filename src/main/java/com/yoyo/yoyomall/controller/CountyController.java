@@ -42,23 +42,27 @@ public class CountyController {
     }
     //根据id查
     @GetMapping("/select")
-    public R get8Id(Integer id){
+    public R get8Id(String id){
         return countyService.get8Id(id);
     }
     //根据cid查
     @GetMapping("/selectByCid")
-    public R get8Cid(Integer id){
+    public R get8Cid(String id){
        return  countyService.get8Cid(id);
     }
+    @GetMapping("/selectByName")
+    public  R get8Name(String name){return  countyService.selectByName(name);}
+    @GetMapping("/selectByCname")
+    public R get8Cname(String cname){return countyService.selectByCname(cname);}
     //根据县id获取完整地址
     @GetMapping("/selectAdr")
-    public  R getAdr8Id(Integer id){
+    public  R getAdr8Id(String id){
         return countyService.getAdr8Id(id);
     }
     //增加县
     @GetMapping("/save")
-    public  R save(String name,String cid){
-        return countyService.save(name,cid);
+    public  R save(String name,String cname){
+        return countyService.save(name,cname);
     }
     //修改县
     @GetMapping("/update")
