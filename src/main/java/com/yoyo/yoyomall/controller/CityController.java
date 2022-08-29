@@ -34,24 +34,26 @@ public class CityController {
      * @return resp.data.cityList
      */
     @GetMapping("/selectcity")
+    @PreAuthorize("hasAnyAuthority('address-city-list')")
     public R getAllCity(){
         return  cityService.getAllCity();
     }
-    /**
-     * 根据id查询市
-     * @param id 市id
-     * @return resp.data.city
-     */
-    @GetMapping("/select")
-    public R get8Id(String id){
-       return cityService.get8Id(id);
-    }
+//    /**
+//     * 根据id查询市
+//     * @param id 市id
+//     * @return resp.data.city
+//     */
+//    @GetMapping("/select")
+//    public R get8Id(String id){
+//       return cityService.get8Id(id);
+//    }
     /**
      * 根据省id查询市列表
      * @param pid 省id
      * @return resp.data.cityList
      */
     @GetMapping("/selectByPid")
+    @PreAuthorize("hasAnyAuthority('address-city-list')")
     public R get8Pid(String pid){
        return cityService.get8Pid(pid);
     }
@@ -61,6 +63,7 @@ public class CityController {
      * @return resp.data.cityList
      */
     @GetMapping("/selectByName")
+    @PreAuthorize("hasAnyAuthority('address-city-list')")
     public  R get8Name(String name){return cityService.get8Name(name);}
     /**
      * 根据省名查询市列表
@@ -68,6 +71,7 @@ public class CityController {
      * @return resp.data.cityList
      */
     @GetMapping("/selectByPname")
+    @PreAuthorize("hasAnyAuthority('address-city-list')")
     public R get8Pname(String pname){return cityService.get8Pname(pname);}
     /**
      * 添加市
@@ -85,7 +89,7 @@ public class CityController {
      * @return R.msg
      */
     @GetMapping("/update")
-    @PreAuthorize("hasAnyAuthority('address-city-update')")
+    @PreAuthorize("hasAnyAuthority('address-city-list')")
     public R update(String name,String id,String pname){
         return cityService.update(name,id,pname);
     }
@@ -96,7 +100,7 @@ public class CityController {
      * @return R.msg
      */
     @GetMapping("/delete")
-    @PreAuthorize("hasAnyAuthority('address-city-delect')")
+    @PreAuthorize("hasAnyAuthority('address-city-list')")
     public R delete(String id){
         return cityService.delete(id);
     }

@@ -36,24 +36,26 @@ public class ProvinceController {
      * @return resp.data.provinceList
      */
     @GetMapping("/selectprovince")
+    @PreAuthorize("hasAnyAuthority('address-province-list')")
     public R getAllProvince(){
         return  provinceService.getAllProvince();
     }
-    /**
-     * 根据id查省
-     * @param id 市id
-     * @return resp.data.province
-     */
-    @GetMapping("/select")
-    public R get8Id(String id){
-       return provinceService.get8Id(id);
-    }
+//    /**
+//     * 根据id查省
+//     * @param id 市id
+//     * @return resp.data.province
+//     */
+//    @GetMapping("/select")
+//    public R get8Id(String id){
+//       return provinceService.get8Id(id);
+//    }
     /**
      * 根据省名查省
      * @param name 省名
      * @return resp.data.province
      */
     @GetMapping("/selectByName")
+    @PreAuthorize("hasAnyAuthority('address-province-list')")
     public R get8Name(String name){return provinceService.get8Name(name);}
 
     /**
@@ -72,7 +74,7 @@ public class ProvinceController {
      * @return resp.msg
      */
     @GetMapping("/update")
-    @PreAuthorize("hasAnyAuthority('address-province-update')")
+    @PreAuthorize("hasAnyAuthority('address-province-list')")
     public  R update(String id,String name){ return provinceService.update(id,name);}
     /**
      * 删除省
@@ -80,7 +82,7 @@ public class ProvinceController {
      * @return resp.msg
      */
     @GetMapping("/delete")
-    @PreAuthorize("hasAnyAuthority('address-province-delete')")
+    @PreAuthorize("hasAnyAuthority('address-province-list')")
     public R delete(String id){
         return provinceService.delete(id);
     }

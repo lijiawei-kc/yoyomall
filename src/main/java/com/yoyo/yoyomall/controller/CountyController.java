@@ -41,24 +41,26 @@ public class CountyController {
      * @return resp.data.countyList
      */
     @GetMapping("/selectcounty")
+    @PreAuthorize("hasAnyAuthority('address-county-list')")
     public R getAllProvince(){
        return countyService.getAllProvince();
     }
-    /**
-     * 根据id查询县
-     * @param id 县id
-     * @return resp.data.county
-     */
-    @GetMapping("/select")
-    public R get8Id(String id){
-        return countyService.get8Id(id);
-    }
+//    /**
+//     * 根据id查询县
+//     * @param id 县id
+//     * @return resp.data.county
+//     */
+//    @GetMapping("/select")
+//    public R get8Id(String id){
+//        return countyService.get8Id(id);
+//    }
     /**
      * 根据cid查询县列表
      * @param cid 市id
      * @return resp.data.countyList
      */
     @GetMapping("/selectByCid")
+    @PreAuthorize("hasAnyAuthority('address-county-list')")
     public R get8Cid(String cid){
        return  countyService.get8Cid(cid);
     }
@@ -68,6 +70,7 @@ public class CountyController {
      * @return resp.data.county
      */
     @GetMapping("/selectByName")
+    @PreAuthorize("hasAnyAuthority('address-county-list')")
     public  R get8Name(String name){return  countyService.selectByName(name);}
     /**
      * 根据市名查询县列表
@@ -75,6 +78,7 @@ public class CountyController {
      * @return resp.data.countyList
      */
     @GetMapping("/selectByCname")
+    @PreAuthorize("hasAnyAuthority('address-county-list')")
     public R get8Cname(String cname){return countyService.selectByCname(cname);}
     /**
      * 根据县id查询完整的地址
@@ -101,7 +105,7 @@ public class CountyController {
      * @return resp.msg
      */
     @GetMapping("/update")
-    @PreAuthorize("hasAnyAuthority('address-county-update')")
+    @PreAuthorize("hasAnyAuthority('address-county-list')")
     public R update(String name,String cname,String id){
         return countyService.update(name,id,cname);
     }
@@ -111,7 +115,7 @@ public class CountyController {
      * @return resp.msg
      */
     @GetMapping("/delete")
-    @PreAuthorize("hasAnyAuthority('address-county-delete')")
+    @PreAuthorize("hasAnyAuthority('address-county-list')")
     public R delete(String id){
         return countyService.delete(id);
     }
