@@ -144,17 +144,30 @@ public class CountyServiceImpl extends ServiceImpl<CountyMapper, County> impleme
     }
 
     @Override
-    public R update(String name, String cid, String id) {
-        County county=countyMapper.selectById(id);
+    public R update(String name, String id,String cname) {
+        County county;
+        try {
+            county=countyMapper.selectById(id);
+        }catch (Exception e){
+            throw new YoyoException(20001,"查询县时出错");
+        }
+
         if(county==null) return R.error().msg("该县id不存在");
 
-        City city=cityMapper.selectById(cid);
-        if(city==null) return R.error().msg("添加所属市不存在");
+        QueryWrapper<City> cityQueryWrapper=new QueryWrapper<>();
+        cityQueryWrapper.eq("name",cname);
+        City city;
+        try {
+            city=cityMapper.selectOne(cityQueryWrapper);
+        }catch (Exception e){
+            throw new YoyoException(20001,"查询所属市时出错");
+        }
 
+        if(city==null) return R.error().msg("添加所属市不存在");
 
         County newCounty=new County();
         newCounty.setId(id);
-        newCounty.setCId(cid);
+        newCounty.setCId(city.getId());
         newCounty.setName(name);
 
         int i;

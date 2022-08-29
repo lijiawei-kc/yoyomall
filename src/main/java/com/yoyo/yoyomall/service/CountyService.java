@@ -26,7 +26,7 @@ public interface CountyService extends IService<County> {
      R getAdr8Id(String id);
 
      R save(String name,String cname);
-      R update(String name,String cid,String id);
+      R update(String name,String id,String cname);
       R delete(String id);
 
       R selectByName(String name);

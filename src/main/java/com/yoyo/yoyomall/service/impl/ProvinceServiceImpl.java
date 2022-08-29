@@ -9,6 +9,7 @@ import com.yoyo.yoyomall.service.ProvinceService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoyo.yoyomall.utils.MathUtil;
 import com.yoyo.yoyomall.utils.R;
+import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,21 @@ public class ProvinceServiceImpl extends ServiceImpl<ProvinceMapper, Province> i
         Province province= provinceMapper.selectById(id);
         return R.ok().data("province",province);
     }
+
+    @Override
+    public R get8Name(String name) {
+        QueryWrapper<Province> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("name",name);
+        Province province;
+        try {
+            province=provinceMapper.selectOne(queryWrapper);
+        }catch (Exception e){
+            throw  new YoyoException(20001,"查询省时错误");
+        }
+
+        return R.ok().data("province",province);
+    }
+
     @Override
     public R save(String name) {
 
