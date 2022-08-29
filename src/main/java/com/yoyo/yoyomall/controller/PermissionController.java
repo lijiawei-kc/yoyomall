@@ -4,6 +4,7 @@ import com.yoyo.yoyomall.entity.vo.PermissionVo;
 import com.yoyo.yoyomall.service.PermissionService;
 import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class PermissionController {
      * @return R
      */
     @PostMapping("/add")
+    @PreAuthorize("hasAnyAuthority('permission-save')")
     public R insert(@RequestBody Permission permission) {
         try {
             permissionService.insert(permission);
@@ -44,6 +46,7 @@ public class PermissionController {
      * @return 子权限树形列表
      */
     @RequestMapping("/childrenTree")
+    @PreAuthorize("hasAnyRole('super_admin')")
     public R childrenTree(String id) {
         try {
             List<PermissionVo> childrenTree = permissionService.permissionTree(id);
@@ -59,6 +62,7 @@ public class PermissionController {
      * @return
      */
     @RequestMapping("/deleteById")
+    @PreAuthorize("hasAnyAuthority('permission-delete')")
     public R delete(String id) {
         try {
             permissionService.deleteById(id);
@@ -73,6 +77,7 @@ public class PermissionController {
      * @return R.data中存放的是查询角色拥有的权限id
      */
     @RequestMapping("/rolePermission")
+    @PreAuthorize("hasAnyRole('super_admin')")
     public R rolePermission(String id) {
         try {
             List<String> pid = permissionService.selectPermissionByRole(id);
@@ -87,6 +92,7 @@ public class PermissionController {
      * @return
      */
     @RequestMapping("/updateById")
+    @PreAuthorize("hasAnyAuthority('permission-update')")
     public R updateById(@RequestBody Permission permission) {
       try {
           Integer rows = permissionService.upadatePermission(permission);
@@ -100,6 +106,7 @@ public class PermissionController {
 
     }
     @RequestMapping("/findById")
+    @PreAuthorize("hasAnyAuthority('permission-update')")
     public    R findById(String id){
         try {
             Permission permission = permissionService.findById(id);
@@ -115,6 +122,7 @@ public class PermissionController {
     }
 
     @GetMapping("/selectAll")
+    @PreAuthorize("hasAnyAuthority('permission-list')")
     public  R selectAll(){
         try {
             List<Permission> permissionList = permissionService.selectAll();

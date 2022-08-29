@@ -34,7 +34,7 @@ public class GoodsController {
 
     @GetMapping("/select/{id}")
     public R selectById(@PathVariable String id){
-      GoodsVo goods= goodsService.selectById(id);
+        GoodsVo goods= goodsService.selectById(id);
 
         return R.ok().data("goods",goods);
     }
@@ -78,18 +78,15 @@ public class GoodsController {
     public R selectall(@RequestBody GoodsQueryVo goodsQueryVo,@PathVariable String page,@PathVariable String limit){
         try {
 
-      List<Goods> list =    goodsService.selectAll(page,limit,goodsQueryVo);
-            return R.ok().data("list",list).data("total",list.size());
-        }catch (Exception e){
+            List<Goods> list = goodsService.selectAll(page, limit, goodsQueryVo);
+            return R.ok().data("list", list).data("total", list.size());
+        }catch (Exception e) {
             e.printStackTrace();
-            throw new YoyoException(20001,"保存失败");
+            throw new YoyoException(20001, "保存失败");
         }
 
 
     }
-
-
-
 
 
 }

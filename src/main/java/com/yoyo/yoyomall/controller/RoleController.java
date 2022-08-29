@@ -5,6 +5,7 @@ import com.yoyo.yoyomall.entity.Role;
 import com.yoyo.yoyomall.service.RoleService;
 import com.yoyo.yoyomall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class RoleController {
     private RoleService roleService;
 
     @PostMapping("/save")
+    @PreAuthorize("hasAnyAuthority('role-save')")
     //添加职务
     public R insert(Role role){
         R response;
@@ -40,6 +42,7 @@ public class RoleController {
 
     //删除职务
     @PostMapping("/delete")
+    @PreAuthorize("hasAnyAuthority('role-delete')")
     public R delete(String id){
         R response;
         try {
@@ -52,6 +55,7 @@ public class RoleController {
     }
     //修改职务
     @PostMapping("/update")
+    @PreAuthorize("hasAnyAuthority('role-update')")
     public R update(Role role){
         R response;
         try {
@@ -65,6 +69,7 @@ public class RoleController {
 
     //根据id查询职务信息
     @GetMapping("/select")
+    @PreAuthorize("hasAnyAuthority('role-update')")
     public R selectById(String id){
         R response;
         try {
@@ -78,6 +83,7 @@ public class RoleController {
 
     //分页查询职务列表
     @GetMapping("/selectall")
+    @PreAuthorize("hasAnyAuthority('role-list')")
     public R selectAll(String des,Integer currentPage,Integer pageSize){
         R response;
         try {
@@ -91,6 +97,7 @@ public class RoleController {
     }
 
     @GetMapping("/selectAllList")
+    @PreAuthorize("hasAnyRole('super_admin')")
     public R selectAllList(){
         R response;
         try {

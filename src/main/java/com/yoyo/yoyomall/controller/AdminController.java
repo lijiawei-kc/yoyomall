@@ -50,9 +50,7 @@ private RedisTemplate redisTemplate;
 
     @PostMapping("/info")
     public R getInfo(String token) {
-
         try {
-
             String jwtToken = JwtUtils.getInfoByJwtToken(token);
             String s = jwtToken.substring(jwtToken.lastIndexOf("Username: "));
             String account=s.substring(10,s.indexOf(59));
@@ -90,13 +88,14 @@ private RedisTemplate redisTemplate;
 
                 redis.set(account,adminVo, Duration.ofDays(7));
 
-                return R.ok().data("Access_token",jwtToken);
+                return R.ok().data("Access_token",jwtToken).data("admin",adminVo);
             }
         } catch (Exception e) {
             e.printStackTrace();
             throw new YoyoException(20001, "登陆失败");
         }
-    } @PostMapping("/loginout")
+    }
+    @PostMapping("/loginout")
     public R loginOut(@RequestBody AdminVo admin) {
         try {Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
            JwtUtils.getJwtToken(authentication.getPrincipal().toString()) ;
@@ -125,6 +124,7 @@ redisTemplate.delete(admin.getAccount());
     }
 
     @PostMapping("/save")
+    @PreAuthorize("hasAnyAuthority('admin-save')")
     public R save(@RequestBody AdminVo admin) {
         System.out.println(admin);
         try {
@@ -137,6 +137,7 @@ redisTemplate.delete(admin.getAccount());
     }
 
     @PostMapping("/select/{id}")
+    @PreAuthorize("hasAnyAuthority('admin-update')")
     public R selectById(@PathVariable String id) {
         try {
             Admin admin = adminService.getById(id);
@@ -151,6 +152,7 @@ redisTemplate.delete(admin.getAccount());
     }
 
     @PostMapping("/selectall")
+    @PreAuthorize("hasAnyAuthority('admin-list')")
     public R selectall() {
         try {
             List<AdminVo> list = adminService.selectAll();
@@ -161,6 +163,7 @@ redisTemplate.delete(admin.getAccount());
     }
 
     @PostMapping("/delete/{id}")
+    @PreAuthorize("hasAnyAuthority('admin-delete')")
     public R deleteById(@PathVariable String id) {
         try {
             adminService.deleteById(id);
@@ -171,6 +174,7 @@ redisTemplate.delete(admin.getAccount());
     }
 
     @PostMapping("/update")
+    @PreAuthorize("hasAnyAuthority('admin-update')")
     public R update(@RequestBody AdminVo admin) {
         try {
             adminService.updateByEntity(admin);
