@@ -10,6 +10,7 @@
     </parent>
     <groupId>com.yoyo</groupId>
     <artifactId>yoyomall</artifactId>
+    <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>yoyomall</name>
     <description>Demo project for Spring Boot</description>
@@ -20,6 +21,9 @@
 
 
     <dependencies>
+
+
+
         <dependency>
             <groupId>com.github.tobato</groupId>
             <artifactId>fastdfs-client</artifactId>
@@ -260,6 +264,7 @@
             </resources>
 
 
+        <finalName>yoyomall</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
