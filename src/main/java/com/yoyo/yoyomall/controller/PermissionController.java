@@ -125,7 +125,7 @@ public class PermissionController {
     @PreAuthorize("hasAnyAuthority('permission-list')")
     public  R selectAll(){
         try {
-            List<Permission> permissionList = permissionService.selectAll();
+            List<PermissionVo> permissionList = permissionService.selectAll();
             return R.ok().data("permissionList",permissionList);
         }
         catch (Exception e){
