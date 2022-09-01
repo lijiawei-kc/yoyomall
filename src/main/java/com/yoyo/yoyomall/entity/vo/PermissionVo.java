@@ -26,4 +26,6 @@ public class PermissionVo {
     private String parentId;
 
     private List<PermissionVo> children;//所有子权限
+
+    private String parentName;
 }

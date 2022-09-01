@@ -7,6 +7,7 @@ import com.yoyo.yoyomall.mapper.PermissionMapper;
 import com.yoyo.yoyomall.service.PermissionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoyo.yoyomall.utils.YoyoException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import springfox.documentation.service.ResponseMessage;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -87,8 +89,19 @@ private  PermissionMapper permissionMapper;
     }
 
     @Override
-    public List<Permission> selectAll() {
-        List<Permission> permissions = baseMapper.selectList(new QueryWrapper<>());
-        return permissions;
+    @Transactional
+    public List<PermissionVo> selectAll() {
+        List<PermissionVo> permissionVoList = new ArrayList<>();
+        List<Permission> permissionList = baseMapper.selectList(new QueryWrapper<>());
+        for (Permission permission : permissionList) {
+            PermissionVo permissionVo = new PermissionVo();
+            BeanUtils.copyProperties(permission,permissionVo);
+            if(!permissionVo.getParentId().equals("0")){
+                String name = baseMapper.selectById(permissionVo.getParentId()).getName();
+                permissionVo.setParentName(name);
+            }
+            permissionVoList.add(permissionVo);
+        }
+        return permissionVoList;
     }
 }

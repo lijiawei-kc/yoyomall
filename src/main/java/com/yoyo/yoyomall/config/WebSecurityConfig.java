@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
 
-                .authorizeRequests().antMatchers("/manager/admin/login","/web/**").anonymous()
+                .authorizeRequests().antMatchers("/manager/admin/login","/manager/file/*","/web/**").anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

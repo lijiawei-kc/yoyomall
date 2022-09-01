@@ -126,16 +126,30 @@ public class CityServiceImpl extends ServiceImpl<CityMapper, City> implements Ci
     }
 
     @Override
-    public R update(String name, String pid, String id) {
-        City city=cityMapper.selectById(id);
+    public R update(String name, String id,String pname) {
+        City city;
+        try{
+            city=cityMapper.selectById(id);
+        }catch (Exception e){
+            throw new YoyoException(20001,"查询市id时出错");
+        }
+
         if(city==null) return R.error().msg("该市id不存在");
 
-        Province province=provinceMapper.selectById(pid);
+
+        QueryWrapper<Province> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("name",pname);
+        Province province;
+       try{
+           province=provinceMapper.selectOne(queryWrapper);
+       }catch (Exception e){
+           throw new YoyoException(20001,"查询省名时出错");
+       }
         if(province==null) return R.error().msg("添加所属省不存在");
 
         City newCity=new City();
         newCity.setId(id);
-        newCity.setPId(pid);
+        newCity.setPId(province.getId());
         newCity.setName(name);
 
         int i;
