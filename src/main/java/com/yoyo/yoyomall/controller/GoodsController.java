@@ -10,6 +10,7 @@ import com.yoyo.yoyomall.service.GoodsService;
 import com.yoyo.yoyomall.utils.R;
 import com.yoyo.yoyomall.utils.YoyoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class GoodsController {
     private GoodsGoodstagService goodstagService;
 
     @GetMapping("/select/{id}")
+    @PreAuthorize("hasAnyAuthority('goods-list','goods-save')")
     public R selectById(@PathVariable String id){
       GoodsVo goods= goodsService.selectById(id);
 
@@ -40,6 +42,7 @@ public class GoodsController {
     }
 
     @PostMapping("/save")
+    @PreAuthorize("hasAnyAuthority('goods-save')")
     public R save(@RequestBody GoodsVo goods){
         System.out.println(goods);
         try {
@@ -52,6 +55,7 @@ public class GoodsController {
         return R.ok();
     }
     @PostMapping("/delete")
+    @PreAuthorize("hasAnyAuthority('goods-list')")
     public R deleteById(String id){
         try {
             goodsService.deleteById(id);
@@ -64,6 +68,7 @@ public class GoodsController {
         return R.ok();
     }
     @PostMapping("/update")
+    @PreAuthorize("hasAnyAuthority('goods-list','goods-save')")
     public R update(@RequestBody GoodsVo goods){
         try {
             goodsService.updateById(goods);
@@ -75,6 +80,7 @@ public class GoodsController {
         return R.ok();
     }
     @PostMapping("/selectall/{page}/{limit}")
+    @PreAuthorize("hasAnyAuthority('goods-list')")
     public R selectall(@RequestBody GoodsQueryVo goodsQueryVo,@PathVariable String page,@PathVariable String limit){
         try {
 

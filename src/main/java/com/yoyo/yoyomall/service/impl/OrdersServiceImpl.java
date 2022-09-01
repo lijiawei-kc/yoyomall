@@ -106,7 +106,7 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
     }
 
     public String getAddress(String coid){
-        R addressResp = countyService.getAdr8Id(Integer.valueOf(coid));
+        R addressResp = countyService.getAdr8Id(coid);
         Map<String, Object> addressRespData = addressResp.getData();
         String address = (String)addressRespData.get("province")+addressRespData.get("city")+addressRespData.get("county");
         return address;

@@ -124,6 +124,7 @@ redisTemplate.delete(admin.getAccount());
 //        return R.ok();
     }
 
+    @PreAuthorize("hasAnyAuthority('admin-list')")
     @PostMapping("/save")
     public R save(@RequestBody AdminVo admin) {
         System.out.println(admin);
@@ -137,6 +138,7 @@ redisTemplate.delete(admin.getAccount());
     }
 
     @PostMapping("/select/{id}")
+    @PreAuthorize("hasAnyAuthority('admin-list','admin-save')")
     public R selectById(@PathVariable String id) {
         try {
             Admin admin = adminService.getById(id);
@@ -150,6 +152,7 @@ redisTemplate.delete(admin.getAccount());
         }
     }
 
+    @PreAuthorize("hasAnyAuthority('admin-list')")
     @PostMapping("/selectall")
     public R selectall() {
         try {
@@ -161,6 +164,7 @@ redisTemplate.delete(admin.getAccount());
     }
 
     @PostMapping("/delete/{id}")
+    @PreAuthorize("hasAnyAuthority('admin-list')")
     public R deleteById(@PathVariable String id) {
         try {
             adminService.deleteById(id);
@@ -171,6 +175,7 @@ redisTemplate.delete(admin.getAccount());
     }
 
     @PostMapping("/update")
+    @PreAuthorize("hasAnyAuthority('admin-list','admin-save')")
     public R update(@RequestBody AdminVo admin) {
         try {
             adminService.updateByEntity(admin);
