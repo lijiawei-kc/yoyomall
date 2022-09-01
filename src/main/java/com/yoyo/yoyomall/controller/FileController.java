@@ -3,7 +3,6 @@ package com.yoyo.yoyomall.controller;
 
 import com.github.tobato.fastdfs.proto.storage.DownloadByteArray;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
-import com.sun.xml.internal.ws.util.JAXWSUtils;
 import com.yoyo.yoyomall.utils.R;
 import com.yoyo.yoyomall.utils.YoyoException;
 import io.swagger.annotations.Api;
