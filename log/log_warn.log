@@ -1,1 +1,9 @@
-2022-08-25 22:03:27.334 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m22s848ms270µs100ns).
+2022-09-03 15:42:11.803 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/D:/JavaWebStudy/apache-maven-3.5.2/repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class
+	jar:file:/D:/JavaWebStudy/apache-maven-3.5.2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
